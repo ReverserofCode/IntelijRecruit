@@ -28,7 +28,7 @@ public class Recruit {
     private String memberGender;
 
     @Column(nullable = false)
-    private int memberAge;
+    private String memberAge;
 
     @Column(nullable = false)
     private String memberPhoneNumber;
