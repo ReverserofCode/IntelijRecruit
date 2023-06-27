@@ -1,10 +1,44 @@
 <!DOCTYPE HTML>
 <!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+   Hyperspace by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+
+
+
+    function inPost() {
+        let techStackList = [];
+
+        $('input[type="checkbox"]:checked').each(function() {
+            techStackList.push(this.value);
+        });
+
+        let data = {'memberId': $(`#memberId`).val(), 'memberPw': $(`#memberPw`).val(),
+            'memberName':$(`#memberName`).val(),'memberGender':$(`#memberGender`).val(),
+            'memberAge':$(`#memberAge`).val(), 'memberPhoneNumber':$(`#memberPhoneNumber`).val(),
+            'memberEmail':$(`#memberEmail`).val(), 'memberTechStack':techStackList.toString(),
+            'memberCourseIsu':$(`#memberCourseIsu`).val(),'memberWebUrl':$(`#memberWebUrl`).val()};
+
+
+        $.ajax({
+            type: "POST",
+            url: "/api/recruit",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert('회원가입 완료!');
+                window.location.reload();
+            }
+        });
+    }
+</script>
+
 
 <head>
     <title>회원가입 사이트</title>
@@ -23,123 +57,123 @@
 
 <body class="is-preload">
 
-    <!-- Header -->
-    <header id="header">
-        <a href="index.html" class="title">Hyperspace</a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="generic.html" class="active">Generic</a></li>
-                <li><a href="elements.html">Elements</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="title">Hyperspace</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generic.html" class="active">Generic</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+<!-- Wrapper -->
+<div id="wrapper">
 
-        <!-- Main -->
-        <section id="main" class="wrapper">
+    <!-- Main -->
+    <section id="main" class="wrapper">
 
-            <div class="inner">
-                <h1 class="major">회원가입</h1>
-                <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
+        <div class="inner" >
+            <h1 class="major">회원가입</h1>
+            <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
-                    <label for="ID">아이디</label>
-                    <input type="text" name="ID" id="ID" /> <br>
+                <label for="memberId">아이디</label>
+                <input type="text" name="memberId" id="memberId" /> <br>
 
-                    <label for="PW">비밀번호</label>
-                    <input type="text" name="PW" id="PW" /> <br>
+                <label for="memberPw">비밀번호</label>
+                <input type="text" name="memberPw" id="memberPw" /> <br>
 
-                    <label for="PWcheck">비밀번호 확인</label>
-                    <input type="text" id="PWcheck" required> <br>
+                <label for="memberName">비밀번호 확인</label>
+                <input type="text" id="memberName" required> <br>
 
-                    <label for="name">이름</label>
-                    <input type="text" name="name" id="name" /> <br>
+                <label for="name">이름</label>
+                <input type="text" name="name" id="name" /> <br>
 
-                    <label for="age">나이</label>
-                    <input type="text" name="age" id="age" /> <br>
+                <label for="memberAge">나이</label>
+                <input type="text" name="memberAge" id="memberAge" /> <br>
 
-                    <label for="age">성별</label>
-                    <SELECT name="gender" id="gender" required="required">
-                        <option value="#" selected>성별 선택</option>
-                        <option value="남성">남성</option>
-                        <option value="여성">여성</option>
-                    </SELECT> <br>
+                <label for="memberGender">성별</label>
+                <SELECT name="memberGender" id="memberGender" required="required">
+                    <option value="#" selected>성별 선택</option>
+                    <option value="male">남성</option>
+                    <option value="female">여성</option>
+                </SELECT> <br>
 
-                    <label for="phoneNumber">전화번호(형식에 맞춰서 작성하십시오)</label>
-                    <input type="text" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" required="required"> <br>
+                <label for="memberPhoneNumber">전화번호(형식에 맞춰서 작성하십시오)</label>
+                <input type="text" placeholder="000-0000-0000" id="memberPhoneNumber" pattern="\d{3}-\d{4}-\d{4}" required="required"> <br>
 
-                    <label for="email">이메일(형식에 맞춰서 작성하십시오)</label>
-                    <input type="email" name="email" id="email" placeholder="aaa@naver.com" required="required"> <br>
+                <label for="memberEmail">이메일(형식에 맞춰서 작성하십시오)</label>
+                <input type="email" name="email" id="memberEmail" placeholder="aaa@naver.com" required="required"> <br>
 
 
-                    <label for="techStack">기술(최대 5개 선택해주세요)</label>
-                    <div class="techStack">
-                        <input type="checkbox" id="stack_java" name="stack_java">
-                        <label for="stack_java">JAVA</label>
-                        <input type="checkbox" id="stack_SpringBoot" name="SpringBoot">
-                        <label for="stack_SpringBoot">SpringBoot</label>
-                        <input type="checkbox" id="stack_C" name="stack_C">
-                        <label for="stack_C">C</label>
-                        <input type="checkbox" id="stack_Spring" name="stack_Spring">
-                        <label for="stack_Spring">Spring</label>
-                        <input type="checkbox" id="stack_CSS" name="stack_CSS">
-                        <label for="stack_CSS">CSS</label>
-                        <input type="checkbox" id="stack_HTML" name="stack_HTML">
-                        <label for="stack_HTML">HTML</label>
-                        <input type="checkbox" id="stack_JavaScript" name="stack_JavaScript">
-                        <label for="stack_JavaScript">JavaScript</label>
-                    </div>
-
-                    <label for="courselsu">경력</label>
-                    <input type="text" name="courselsu" id="courselsu "  placeholder="근무 했던, 재직중인 회사명을 작성하세요." /> <br>
-
-                    <label for="webUrl">개인페이지</label>
-                    <a>개인 페이지가 있는 경우 형식에 맞춰 작성해주세요.</a>
-                    <input type="text" name="webUrl" id="webUrl "  placeholder="http://~" /> <br>
+                <label for="memberTechStack">기술(최대 5개 선택해주세요)</label>
+                <div class="techStack" id="memberTechStack">
+                    <input type="checkbox" id="stack_java" value="java">
+                    <label for="stack_java">JAVA</label>
+                    <input type="checkbox" id="stack_SpringBoot" value="SpringBoot">
+                    <label for="stack_SpringBoot">SpringBoot</label>
+                    <input type="checkbox" id="stack_C" value="C">
+                    <label for="stack_C">C</label>
+                    <input type="checkbox" id="stack_Spring" value="Spring">
+                    <label for="stack_Spring">Spring</label>
+                    <input type="checkbox" id="stack_CSS" value="CSS">
+                    <label for="stack_CSS">CSS</label>
+                    <input type="checkbox" id="stack_HTML" value="HTML">
+                    <label for="stack_HTML">HTML</label>
+                    <input type="checkbox" id="stack_JavaScript" value="JavaScript">
+                    <label for="stack_JavaScript">JavaScript</label>
                 </div>
-                <ul class="actions" style="margin-left: 13%;">
-                    <li><a href="#" class="button">회원가입</a></li>
-                    <li><a href="#" class="button">취소</a></li>
-                </ul>
+
+                <label for="memberCourseIsu">경력</label>
+                <input type="text" name="memberCourseIsu" id="memberCourseIsu"  placeholder="근무 했던, 재직중인 회사명을 작성하세요." /> <br>
+
+                <label for="memberWebUrl">개인페이지</label>
+                <a>개인 페이지가 있는 경우 형식에 맞춰 작성해주세요.</a>
+                <input type="text" name="webUrl" id="memberWebUrl"  placeholder="http://~" /> <br>
             </div>
-
-        </section>
-
-
-
-    </div>
-
-    <!-- Footer -->
-    <footer id="footer" class="wrapper alt">
-        <div class="inner">
-            <ul class="menu">
-                <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <ul class="actions" style="margin-left: 13%;">
+                <li><a href="#" class="button" onclick="inPost()">회원가입</a></li>
+                <li><a href="#" class="button">취소</a></li>
             </ul>
         </div>
-    </footer>
+
+    </section>
 
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <!--비밀번호 체크-->
-    <script>
-        regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
-        if (!regExp.test(userPwd1.value)) {
-            alert("유효한 비밀번호를 입력해주세요");
-            userPwd1.value = "";
-            userPwd1.focus();
-            return false;
-        } 
-    </script>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+</footer>
+
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<!--비밀번호 체크-->
+<script>
+    regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+    if (!regExp.test(userPwd1.value)) {
+        alert("유효한 비밀번호를 입력해주세요");
+        userPwd1.value = "";
+        userPwd1.focus();
+        return false;
+    }
+</script>
 </body>
 
 </html>
