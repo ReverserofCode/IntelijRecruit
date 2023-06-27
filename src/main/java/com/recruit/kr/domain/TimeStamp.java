@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public class TimeStamp {
 
     @CreatedDate //생성시간
-    private LocalDateTime createdTime;
+    private LocalDateTime boardcreatedTime;
 
     @LastModifiedDate //수정시간
-    private LocalDateTime modifedTime;
+    private LocalDateTime boardmodifedTime;
 
 }
