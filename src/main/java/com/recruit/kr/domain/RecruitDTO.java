@@ -8,7 +8,7 @@ import lombok.*;
 @RequiredArgsConstructor
 public class RecruitDTO {
 
-    private int memberAge;
+    private String memberAge;
     private String memberId;
     private String memberPw;
     private String memberName;
