@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입사이트</title>
+    <!-- 참고자료 -->
+    <style>
+    label{
+        color: gray;
+        padding-left: 10px;
+        font-size: 10px;
+     }
+     
+      form{
+        border: 1px solid lightgray;
+        padding: 10px;
+        width: 500px;
+      }
+
+      #member{
+        position: absolute;
+        top:0%; left: 40%;
+      }
+     </style>
+
+     </head>
+     <body>
+     <div id="member">
+     
+     <h1>회원가입 사이트</h1>
+     
+     <form action="insert.me">
+        
+     * 아이디 :
+     
+     <input type="text" name="userid" id="userid" required> <br>
+     
+     <label>첫글자는 반드시 영문자로, 그리고 영문자, 숫자 포함하여 총 4~12자로 입력하시오.</label>
+     
+     <br><br>
+
+     * 비밀번호 :
+    
+     <input type="password" name="userPwd" id="userPwd1" required> <br>
+     
+     <label>영문자, 숫자, 특수문자로 총 8자~15자로 입력하시오.</label>
+     
+     <br><br>
+        
+     * 비밀번호 확인 :
+    
+     <input type="password" id="userPwd2" required> <br>
+     
+     <label>위의 비밀번호와 일치하게 입력하시오.</label>
+     
+     <br><br>
+
+     * 이름 :
+     
+     <input type="text" name="userName" id="userName" required> <br>
+     
+     <label>한글로만 이루어져야되며 2글자 이상으로 입력하시오.</label>
+     
+     <br><br>
+
+
+
+     * 전화번호 :
+     
+     <input type="text" placeholder="000-0000-0000" pattern="\d{3}-\d{4}-\d{4}" required="required"> <input type="button"
+     
+     value="인증번호 전송" onclick="alert('인증번호가 전송되었습니다.')">
+
+     <br>
+
+     
+     * 인증번호 :
+     
+     <input type="tel" placeholder="인증번호" required>
+     
+     <br><br>
+
+
+     * 나이 : 
+     
+     <input type="date" name="age" id="userAge" required> <br>
+     
+     <label>생년월일입력</label>
+     
+     <br> <br>
+
+
+
+     * 성별 :
+     
+     <input type="radio" name="gender" id="gender" value="남자" checked> 남
+
+     <input type="radio" name="gender" id="gender" value="여자"> 여 <br>
+
+     <label>성별을 입력하세요</label>
+
+     <br><br>
+
+
+
+
+     * 이메일 :
+     
+     <input type="email" name="email" id="email" placeholder="aaa@naver.com" required="required"> <br>
+
+     <label>이메일 형식에 맞춰서 입력하시오.</label>
+
+     <br><br>
+
+   
+
+
+     * 고등학교 :
+
+     <SELECT name="hischool" id="hischool" required="required">
+
+     <option value="#" selected>선택없음</option>   
+      
+     <option value="호원고등학교">호원고등학교</option>
+
+     <option value="상우고등학교">상우고등학교</option>
+
+     <option value="발곡고등학교">발곡고등학교</option>
+
+     <option value="경민고등학교">경민고등학교</option>
+
+     </SELECT> <br><br>
+
+
+     * 취미 :
+
+     <input type="text" name="hobby" id="hobby" placeholder="축구,농구,영화감상,음악감상" list="hobbyList"> <br>
+
+     <datalist id="hobbyList">
+
+     <option value="soccer">축구</option>
+     
+     <option value="basketball">농구</option>
+
+     <option value="movie">영화감상</option>
+
+     <option value="music">음악감상</option>
+
+     </datalist>
+
+     <br>
+
+     
+     * 거주지 :
+
+     <select name="adrss" id="adrss">
+
+     <option value="#" selected>선택 없음</option>
+  
+     <option value="seoul">서울</option>
+
+     <option value="gyeonggi">경기</option>
+
+     <option value="incheon">인천</option>
+
+     </select>
+
+     <br><br>
+
+
+     <p>
+     약관 1 (필수) 동의 합니까? <input type="checkbox" required><br>
+     
+     약관 2 (필수) 동의 합니까? <input type="checkbox" required><br>
+    
+     약관 3 (선택) 동의 합니까? <input type="checkbox">
+     </p>
+
+
+     <input type="submit" value="회원관리" onclick="return validate();">
+     
+     <input type="reset" value="취소">
+
+     </form>
+
+      </div>
+     
+
+      <script>
+      // 유효성 검사 (사용자가 입력한 값들이 유효한 값의 형태인지) 
+      function validate(){
+     
+      // 유효성 검사 : 아이디, 비밀번호, 비밀번호 일치, 이름 
+         
+
+      // input요소 객체들 가져다놓기 (작성된 값 아님!!) 
+
+      var userid = document.getElementById("userid");
+      
+      var userPwd1 = document.getElementById("userPwd2");
+
+      var userPwd2 = document.getElementById("userPwd2");
+
+      var userName = document.getElementById("userName");
+
+      var email = document.getElementById("email");
+
+      // 1) 아이디 검사 
+
+      // 영소문자, 숫자로만 총 4~12글자로 이뤄져야됨 
+
+      // 단, 첫 글자는 반드시 영소문자 여야됨 
+
+      var regExp = /^[a-z][a-z\d]{3,11}$/;
+
+      if(!regExp.test(userid.value)){
+        
+        alert("유효한 아이디를 입력해주세요.");
+
+        userid.select();
+
+        return false;
+      }
+        
+      // 2) 비밀번호 검사 
+
+      // 영문자(대소문자),숫자,특수문자(!@#$%^&*)로 총 8~15자 사이로 입력 
+
+      regExp = /^[a-z\d!@#$%^&*]{8,15}$/i; 
+      
+      if(!regExp.test(userPwd1.value)){ 
+
+      alert("유효한 비밀번호를 입력해주세요"); 
+
+       userPwd1.value = ""; 
+
+        userPwd1.focus(); 
+
+        return false; 
+
+      } 
+
+         // 3) 비밀번호 일치 
+
+       if(userPwd1.value != userPwd2.value){ 
+
+       alert("동일한 비밀번호를 입력해주세요"); 
+
+        userPwd2.value = ""; 
+
+        userPwd2.focus(); 
+
+        return false; 
+
+      } 
+
+      // 4) 이름 
+
+      // 한글(결합)로만 2글자 이상 
+
+      regExp = /^[가-힣]{2,}$/; 
+
+      if(!regExp.test(userName.value)){ 
+
+        alert("유효한 이름을 입력해주세요"); 
+
+        userName.select(); 
+
+        return false; 
+
+      } 
+        //5) 이메일 
+
+        var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/; 
+
+        if (regEmail.test(email) === true) { 
+
+            alert('입력된 값은 이메일입니다.'); 
+
+         } 
+
+
+
+       }
+      </script>
+
+
+     </body>
+     </html>
