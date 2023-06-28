@@ -15,7 +15,7 @@ import java.util.Optional;
 public class BoardController {
     private final Board_JPAREPO boardJparepo;
     private final BoardService boardService;
-
+     //아아아아아아아아아아앙주석이용
     @GetMapping("/api/board")
     public List<Board> getBoard(){
         return boardJparepo.findAllByOrderByBoardIdDesc();
