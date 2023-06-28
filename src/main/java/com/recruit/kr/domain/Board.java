@@ -29,6 +29,9 @@ public class Board extends TimeStamp{
     @Column(nullable = false)
     private int boardReadcount;
 
+    @Column(nullable = false)
+    private String boardWantedRole;
+
     //? 추가 예정?
     /*  추가된다면 모집 조건 들어갈 항목
     @Column(nullable = false)
@@ -43,6 +46,7 @@ public class Board extends TimeStamp{
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
         this.boardReadcount = boardDTO.getBoardReadcount();
+        this.boardWantedRole = boardDTO.getBoardWantedRole();
 
     }
 
@@ -52,6 +56,7 @@ public class Board extends TimeStamp{
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
         this.boardReadcount = boardDTO.getBoardReadcount();
+        this.boardWantedRole = boardDTO.getBoardWantedRole();
 
     }
 }
