@@ -14,7 +14,9 @@ public interface Board_JPAREPO extends JpaRepository<Board,Long> {
 
     List<Board> findAllByOrderByBoardIdDesc();
 
+    // get list with searching bt title(can sub string)
     List<Board> findBoardByBoardTitleContainingOrderByBoardIdDesc(String title);
+
     Optional<Board> findByBoardTitle(String boardTitle);
 
 

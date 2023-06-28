@@ -15,9 +15,13 @@ import java.util.Optional;
 public class BoardController {
     private final Board_JPAREPO boardJparepo;
     private final BoardService boardService;
-     //아아아아아아아아아\아앙주석이용
-    @GetMapping("/api/board")
-    public List<Board> getBoard(){
+
+    //여기에 쓰인 이름은 가칭이므로 추후 변동 가능
+    @GetMapping("/api/board/{boardWantedRole}")
+    public List<Board> getBoard(@PathVariable String boardWantedRole){
+        if(boardWantedRole.equals("프론트엔드")){
+            System.out.println("test");
+        }
         return boardJparepo.findAllByOrderByBoardIdDesc();
     }
     //등록 API

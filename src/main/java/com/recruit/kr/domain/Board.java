@@ -30,10 +30,10 @@ public class Board extends TimeStamp{
     private int boardReadcount;
 
     //? 추가 예정?
-    /*  추가된다면 모집 조건 들어갈 항목
+    // 추가된다면 모집 조건 들어갈 항목
     @Column(nullable = false)
-    private String TEMPNAME;
-    */
+    private String boardWantedRole;
+
 
     //Entity로 값을 넘겨주는 DTO 설계
 
