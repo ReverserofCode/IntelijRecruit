@@ -45,10 +45,6 @@ public class Recruit {
     @Column(nullable = false)
     private String memberWebUrl;
 
-    @Column
-    @ElementCollection
-    private List<String> ages;
-
     //엔티티로 값을 넘겨주는 DTO 설계
     public Recruit(RecruitDTO recruitDTO) {
         this.memberId = recruitDTO.getMemberId();
