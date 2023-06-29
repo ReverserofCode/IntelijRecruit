@@ -45,7 +45,7 @@ public class BoardController {
 
 
     @PutMapping("/api/board/{boardTitle}")
-    public List<Board> putBoardTitleSub(@PathVariable String boardTitle){
+    public List<Board> putBoardTitle(@PathVariable String boardTitle){
         List<Board> boardList = boardJparepo.findAllByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
         if(boardList.size()!=0){
             return boardList;
