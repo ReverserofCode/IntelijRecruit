@@ -33,6 +33,8 @@ public class BoardController {
         }
 
     }
+
+
     //등록 API
     @PostMapping("/api/board")
     public Board postBoard(@RequestBody BoardDTO boardDTO){
@@ -41,22 +43,7 @@ public class BoardController {
         return board;
     }
 
-    /*
-    //제목으로 검색하기
-    //Board_JPAREPO를 통해서 원하는 대로 수정하면 될듯
-    @PutMapping("/api/board/{boardTitle}")
-    public Board putBoardTitle(@PathVariable String boardTitle){
-        Optional<Board> optionalBoard = boardJparepo.findByBoardTitle(boardTitle);
 
-        Board board = new Board();
-        if(optionalBoard.isPresent()){
-            board = optionalBoard.get();
-
-        }
-
-        return board;
-    }
-    */
     @PutMapping("/api/board/{boardTitle}")
     public List<Board> putBoardTitleSub(@PathVariable String boardTitle){
         List<Board> boardList = boardJparepo.findAllByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
