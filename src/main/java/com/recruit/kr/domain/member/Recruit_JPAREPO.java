@@ -1,4 +1,4 @@
-package com.recruit.kr.domain.recruit;
+package com.recruit.kr.domain.member;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
