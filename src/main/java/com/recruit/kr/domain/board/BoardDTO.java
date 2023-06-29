@@ -12,6 +12,7 @@ public class BoardDTO {
     private String boardContent;
     private String boardAuthor;
     private int boardReadcount;
+    private String boardWantedRole;
 
 
 
