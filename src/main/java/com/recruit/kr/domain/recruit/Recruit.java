@@ -1,4 +1,4 @@
-package com.recruit.kr.domain;
+package com.recruit.kr.domain.recruit;
 
 
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity //데이터 베이스 테이블
 @Getter //게터 세팅

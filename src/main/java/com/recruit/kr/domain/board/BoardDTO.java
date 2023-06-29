@@ -1,4 +1,4 @@
-package com.recruit.kr.domain;
+package com.recruit.kr.domain.board;
 
 
 import lombok.Data;

@@ -1,9 +1,8 @@
-package com.recruit.kr.domain;
+package com.recruit.kr.domain.board;
 
+import com.recruit.kr.domain.TimeStamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.Columns;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -12,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Board extends TimeStamp{
+public class Board extends TimeStamp {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)//자동증가
     private Long boardId;

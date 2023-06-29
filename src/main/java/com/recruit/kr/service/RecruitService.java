@@ -1,9 +1,9 @@
 package com.recruit.kr.service;
 
 
-import com.recruit.kr.domain.Recruit;
-import com.recruit.kr.domain.RecruitDTO;
-import com.recruit.kr.domain.Recruit_JPAREPO;
+import com.recruit.kr.domain.recruit.Recruit;
+import com.recruit.kr.domain.recruit.RecruitDTO;
+import com.recruit.kr.domain.recruit.Recruit_JPAREPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

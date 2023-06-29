@@ -1,8 +1,8 @@
 package com.recruit.kr.controller;
 
-import com.recruit.kr.domain.Recruit;
-import com.recruit.kr.domain.RecruitDTO;
-import com.recruit.kr.domain.Recruit_JPAREPO;
+import com.recruit.kr.domain.recruit.Recruit;
+import com.recruit.kr.domain.recruit.RecruitDTO;
+import com.recruit.kr.domain.recruit.Recruit_JPAREPO;
 import com.recruit.kr.service.RecruitService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

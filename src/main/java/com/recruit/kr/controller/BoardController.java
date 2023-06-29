@@ -1,8 +1,8 @@
 package com.recruit.kr.controller;
 
-import com.recruit.kr.domain.Board;
-import com.recruit.kr.domain.BoardDTO;
-import com.recruit.kr.domain.Board_JPAREPO;
+import com.recruit.kr.domain.board.Board;
+import com.recruit.kr.domain.board.BoardDTO;
+import com.recruit.kr.domain.board.Board_JPAREPO;
 import com.recruit.kr.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,25 +19,19 @@ public class BoardController {
     //여기에 쓰인 이름은 가칭이므로 추후 변동 가능
     @GetMapping("/api/board/{boardWantedRole}")
     public List<Board> getBoard(@PathVariable String boardWantedRole){
-        if(boardWantedRole.equals("all")){
-            return boardJparepo.findAllByOrderByBoardIdDesc();
+        switch (boardWantedRole){
+            case "프론트엔드": // 프론트 엔드 항목으로 글 출력
+                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+            case "백엔드": // 백엔드 항목으로 글 출력
+                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+            case "보안": // 보안 항목으로 글 출력
+                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+            case "AI": // AI 항목으로 글 출력
+                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+            default: // 기본값은 ALL 항목으로 글 출력
+                return boardJparepo.findAllByOrderByBoardIdDesc();
         }
-        else if(boardWantedRole.equals("프론트엔드")){
-            return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
-        }
-        else if(boardWantedRole.equals("백엔드")){
-            return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
-        }
-        else if(boardWantedRole.equals(("보안"))){
-            return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
-        }
-        else if(boardWantedRole.equals("AI")){
-            return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
-        }
-        //위에 코드 압축 가능할지도? 어차피 우리가 원하는 검색 요소가 4가지로 카테고리 있는거니깐
-        else{
-            return null;
-        }
+
     }
     //등록 API
     @PostMapping("/api/board")
@@ -65,7 +59,7 @@ public class BoardController {
     */
     @PutMapping("/api/board/{boardTitle}")
     public List<Board> putBoardTitleSub(@PathVariable String boardTitle){
-        List<Board> boardList = boardJparepo.findBoardByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
+        List<Board> boardList = boardJparepo.findAllByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
         if(boardList.size()!=0){
             return boardList;
         }

@@ -1,4 +1,4 @@
-package com.recruit.kr.domain;
+package com.recruit.kr.domain.board;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.util.List;
-import java.util.Optional;
 
 @EnableJpaRepositories
 @EnableJpaAuditing
@@ -19,7 +18,7 @@ public interface Board_JPAREPO extends JpaRepository<Board,Long> {
     List<Board> findAllByBoardWantedRoleContainingOrderByBoardIdDesc(String boardWantedRole);
 
     // 검색시 사용하는 리스트
-    List<Board> findBoardByBoardTitleContainingOrderByBoardIdDesc(String title);
+    List<Board> findAllByBoardTitleContainingOrderByBoardIdDesc(String title);
 
     //수정할때 사용하는 Optional
    // Optional<Board> findByBoardTitle(String boardTitle);

@@ -1,8 +1,8 @@
 package com.recruit.kr.service;
 
-import com.recruit.kr.domain.Board;
-import com.recruit.kr.domain.BoardDTO;
-import com.recruit.kr.domain.Board_JPAREPO;
+import com.recruit.kr.domain.board.Board;
+import com.recruit.kr.domain.board.BoardDTO;
+import com.recruit.kr.domain.board.Board_JPAREPO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
