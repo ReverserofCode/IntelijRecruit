@@ -21,11 +21,11 @@ public class BoardController {
     public List<Board> getBoard(@PathVariable String boardWantedRole){
         switch (boardWantedRole){
             case "프론트엔드": // 프론트 엔드 항목으로 글 출력
-                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+
             case "백엔드": // 백엔드 항목으로 글 출력
-                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+
             case "보안": // 보안 항목으로 글 출력
-                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+
             case "AI": // AI 항목으로 글 출력
                 return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
             default: // 기본값은 ALL 항목으로 글 출력
