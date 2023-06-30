@@ -8,14 +8,14 @@
 
 <head>
     <title>프로젝트 글 작성</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
+        <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
     <style>
-        ul.li{
+        ul.li {
             box-sizing: 100px;
         }
     </style>
@@ -23,66 +23,77 @@
 
 <body class="is-preload">
 
-    <!-- Header -->
-    <header id="header">
-        <a href="index.html" class="title">Hyperspace</a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="generic.html" class="active">Generic</a></li>
-                <li><a href="elements.html">Elements</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="title">Hyperspace</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generic.html" class="active">Generic</a></li>
+            <li><a href="elements.html">Elements</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+<!-- Wrapper -->
+<div id="wrapper">
 
-        <!-- Main -->
-        <section id="main" class="wrapper">
+    <!-- Main -->
+    <section id="main" class="wrapper">
 
-            <div class="inner">
-                <h1 class="major">프로젝트 글 작성</h1>
-                <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
+        <div class="inner">
+            <h1 class="major">프로젝트 글 작성</h1>
+            <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
-                    <label for="title">제목</label>
-                    <input type="text" name="title" id="title" /> <br>
-
-                    <label for="contents">내용</label>
-                    <input type="text" name="contents" id="contents" style="height: 500px;"/> <br>
+                <label for="title">제목</label>
+                <input type="text" name="title" id="title"/> <br>
+                <label for="boardWantedRole">모집 역할</label>
+                <div class="boardWantedRole" id="boardWantedRole">
+                    <input type="checkbox" id="role_fornt" value="프론트엔드">
+                    <label for="role_fornt">프론트엔드</label>
+                    <input type="checkbox" id="role_back" value="백엔드">
+                    <label for="role_back">백엔드</label>
+                    <input type="checkbox" id="role_security" value="보안">
+                    <label for="role_security">보안</label>
+                    <input type="checkbox" id="role_AI" value="AI">
+                    <label for="role_AI">AI</label>
                 </div>
 
-                <ul class="actions" style="margin-left: 13%;">
-                    <li><a href="#" class="button primary">등록</a></li>
-                    <li><a href="index.html" class="button">취소</a></li>
-                </ul>
+                <label for="contents" name = "contents" id="contents">내용</label>
+                <textarea rows="12" cols="30" name="contents"></textarea>
+
             </div>
 
-        </section>
-
-
-
-    </div>
-
-    <!-- Footer -->
-    <footer id="footer" class="wrapper alt">
-        <div class="inner">
-            <ul class="menu">
-                <li>&copy; Untitled. All rights reserved.</li>
-                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <ul class="actions" style="margin-left: 13%;">
+                <li><a href="#" class="button primary">등록</a></li>
+                <li><a href="index.html" class="button">취소</a></li>
             </ul>
         </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  
+    </section>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
 </body>
 
 </html>
