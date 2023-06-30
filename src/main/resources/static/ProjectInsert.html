@@ -1,10 +1,40 @@
 <!DOCTYPE HTML>
 <!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+   Hyperspace by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+
+<script>
+    //230630 게시판 등록 AJAX 테스트 (완료)
+
+    function inboardPost() {
+        let boardWantedRoleList = [];
+
+        $('input[type="checkbox"]:checked').each(function() {
+            boardWantedRoleList.push(this.value);
+        });
+
+        let data = {'boardTitle': $(`#boardTitle`).val(), 'boardWantedRole':boardWantedRoleList.toString(),
+            'boardContent': $(`#boardContent`).val(),'boardAuthor': "우리"};
+
+
+        $.ajax({
+            type: "POST",
+            url: "/api/board",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert('게시판 등록 완료!');
+                window.location.reload();
+            }
+        });
+
+    }
+</script>
+
+
 
 <head>
     <title>프로젝트 글 작성</title>
@@ -45,12 +75,12 @@
             <h1 class="major">프로젝트 글 작성</h1>
             <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
-                <label for="title">제목</label>
-                <input type="text" name="title" id="title"/> <br>
+                <label for="boardTitle">제목</label>
+                <input type="text" name="boardTitle" id="boardTitle"/> <br>
                 <label for="boardWantedRole">모집 역할</label>
                 <div class="boardWantedRole" id="boardWantedRole">
-                    <input type="checkbox" id="role_fornt" value="프론트엔드">
-                    <label for="role_fornt">프론트엔드</label>
+                    <input type="checkbox" id="role_front" value="프론트엔드">
+                    <label for="role_front">프론트엔드</label>
                     <input type="checkbox" id="role_back" value="백엔드">
                     <label for="role_back">백엔드</label>
                     <input type="checkbox" id="role_security" value="보안">
@@ -59,14 +89,14 @@
                     <label for="role_AI">AI</label>
                 </div>
 
-                <label for="contents" name = "contents" id="contents">내용</label>
-                <textarea rows="12" cols="30" name="contents"></textarea>
+                <label for="boardContent">내용</label>
+                <textarea rows="12" cols="30" id="boardContent" name="boardContent"></textarea>
 
             </div>
 
             <ul class="actions" style="margin-left: 13%;">
-                <li><a href="#" class="button primary">등록</a></li>
-                <li><a href="index.html" class="button">취소</a></li>
+                <li><a href="#" class="button" onclick="inboardPost()">등록</a></li>
+                <li><a href="#" class="button" onclick="window.location.reload()">취소</a></li>
             </ul>
         </div>
 

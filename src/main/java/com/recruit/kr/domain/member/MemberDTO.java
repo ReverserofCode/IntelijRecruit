@@ -6,7 +6,7 @@ import lombok.*;
 
 @Data
 @RequiredArgsConstructor
-public class RecruitDTO {
+public class MemberDTO {
 
     private String memberAge;
     private String memberId;
