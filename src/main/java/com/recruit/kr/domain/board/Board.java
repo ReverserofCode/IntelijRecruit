@@ -36,20 +36,19 @@ public class Board extends TimeStamp {
     //Entity로 값을 넘겨주는 DTO 설계
 
     public Board(BoardDTO boardDTO){
-
         this.boardTitle = boardDTO.getBoardTitle();
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
         this.boardWantedRole = boardDTO.getBoardWantedRole();
-
+        this.boardReadcount = boardDTO.getBoardReadCount();
     }
 
-    public void updateBoard(Long boardId, BoardDTO boardDTO){
-        this.boardId = boardId;
+    public void updateBoard(BoardDTO boardDTO){
         this.boardTitle = boardDTO.getBoardTitle();
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
         this.boardWantedRole = boardDTO.getBoardWantedRole();
+
 
     }
 }
