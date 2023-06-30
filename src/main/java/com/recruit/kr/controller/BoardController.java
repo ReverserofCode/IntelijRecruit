@@ -33,7 +33,7 @@ public class BoardController {
         }
 
     }
-    @GetMapping("/api/board/{boardId}")
+    @GetMapping("/api/board/getOne/{boardId}")
     public Board getRead(@PathVariable Long boardId){
         Optional <Board> optionalBoard = boardJparepo.findById(boardId);
         Board board = new Board();
