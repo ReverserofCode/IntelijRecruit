@@ -40,7 +40,6 @@ public class Board extends TimeStamp {
         this.boardTitle = boardDTO.getBoardTitle();
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
-        this.boardReadcount = boardDTO.getBoardReadcount();
         this.boardWantedRole = boardDTO.getBoardWantedRole();
 
     }
@@ -50,7 +49,6 @@ public class Board extends TimeStamp {
         this.boardTitle = boardDTO.getBoardTitle();
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
-        this.boardReadcount = boardDTO.getBoardReadcount();
         this.boardWantedRole = boardDTO.getBoardWantedRole();
 
     }
