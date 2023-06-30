@@ -17,6 +17,6 @@ public class BoardService {
                 ()-> new IllegalArgumentException("해당 ID가 존재하지 않습니다.")
         );
 
-        board.updateBoard(boardId,boardDTO);
+        board.updateBoard(boardDTO);
     }
 }
