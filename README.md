@@ -2,5 +2,3 @@
 2. applicateion.properties의 mysql의 비밀번호 설정을 통일함
 3. 게시판에 사용할 DataBase의 테이블이 추가됨
 4. 패키지를 세분화함
-5. BoardController에 게시글 내용 불러오는 함수 추가
-6. GetMapping 함수중 게시글 읽는 함수의 api 변경
