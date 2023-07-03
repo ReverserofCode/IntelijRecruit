@@ -31,7 +31,6 @@ public class BoardController {
             default: // 기본값은 ALL 항목으로 글 출력
                 return boardJparepo.findAllByOrderByBoardIdDesc();
         }
-
     }
 
 
