@@ -32,7 +32,16 @@ public class BoardController {
                 return boardJparepo.findAllByOrderByBoardIdDesc();
         }
     }
-
+    @GetMapping("/api/board/getOne/{boardId}")
+    public Board getRead(@PathVariable Long boardId){
+        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+        Board board = new Board();
+        if(optionalBoard.isPresent()) {
+            board = optionalBoard.get();
+        }
+        return board;
+    }
+    //게시판 들어가서 확인시
 
     //등록 API
     @PostMapping("/api/board")
@@ -44,13 +53,11 @@ public class BoardController {
 
 
     @PutMapping("/api/board/{boardTitle}")
-    public List<Board> putBoardTitleSub(@PathVariable String boardTitle){
+    public List<Board> putBoardTitle(@PathVariable String boardTitle){
         List<Board> boardList = boardJparepo.findAllByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
-        if(boardList.size()!=0){
-            return boardList;
-        }
-        else{ return null;}
 
+        return boardList;
+        //검색 결과 없을때 굳이 return null 해 줄 필요 없어 보여서 그냥 검색 결과 명단만 출력 하게 만듬
     }
 
     //삭제 API
