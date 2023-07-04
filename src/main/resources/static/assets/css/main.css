@@ -2790,6 +2790,10 @@ ul.actions.fit.stacked {
 
 /* Contact */
 
+.contact-section {
+    min-width: 30em;
+}
+
 ul.contact {
     list-style: none;
     padding: 0;
@@ -3211,6 +3215,10 @@ table.alt tfoot {
     padding: 5em 5em 3em 5em;
     max-width: 100%;
     width: 40em;
+}
+
+.wrapper > .index_section {
+    height: 80em;
 }
 
 @media screen and (max-width: 1680px) {
