@@ -42,7 +42,7 @@ public class BoardController {
         }
         return board;
     }
-    //게시판 들어가서 확인시
+    //게시판 들어가서 확인할때 호출하는 부분
 
     //등록 API
     @PostMapping("/api/board")
@@ -54,9 +54,11 @@ public class BoardController {
 
 
     @PutMapping("/api/board/{boardTitle}")
-    public List<Board> putBoardTitle(@PathVariable String boardTitle){
-        List<Board> boardList = boardJparepo.findAllByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
-
+    public List<Board> putBoardTitle(String boardWantedRole, @PathVariable String boardTitle){
+        //boardWantedRole="프론트엔드";
+        //위에 wantedRole은 임시 변수 선언한거(테스트용)
+        //List<Board> boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
+        List<Board> boardList = boardJparepo.findAllByBoardWantedRoleContainingAndBoardTitleContainingOrderByBoardIdDesc(boardWantedRole, boardTitle);
         return boardList;
         //검색 결과 없을때 굳이 return null 해 줄 필요 없어 보여서 그냥 검색 결과 명단만 출력 하게 만듬
     }

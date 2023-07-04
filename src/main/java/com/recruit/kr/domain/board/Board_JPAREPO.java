@@ -18,8 +18,9 @@ public interface Board_JPAREPO extends JpaRepository<Board,Long> {
     List<Board> findAllByBoardWantedRoleContainingOrderByBoardIdDesc(String boardWantedRole);
 
     // 검색시 사용하는 리스트
-    List<Board> findAllByBoardTitleContainingOrderByBoardIdDesc(String title);
+    List<Board> findAllByBoardWantedRoleContainingAndBoardTitleContainingOrderByBoardIdDesc(String boardWantedRole, String title);
 
+    List<Board> findBoardsByBoardTitleContainingOrderByBoardIdDesc(String title);
     //수정할때 사용하는 Optional
    // Optional<Board> findByBoardTitle(String boardTitle);
 
