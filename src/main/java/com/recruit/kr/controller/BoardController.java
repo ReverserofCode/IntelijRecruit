@@ -44,6 +44,7 @@ public class BoardController {
     }
     //게시판 들어가서 확인할때 호출하는 부분
 
+
     //등록 API
     @PostMapping("/api/board")
     public Board postBoard(@RequestBody BoardDTO boardDTO){
@@ -53,8 +54,9 @@ public class BoardController {
     }
 
 
-    @PutMapping("/api/board/{boardTitle}")
-    public List<Board> putBoardTitle(String boardWantedRole, @PathVariable String boardTitle){
+
+    @PutMapping("/api/board/{boardWantedRole}/{boardTitle}")
+    public List<Board> putBoardTitle(@PathVariable String boardWantedRole, @PathVariable String boardTitle){
         //boardWantedRole="프론트엔드";
         //위에 wantedRole은 임시 변수 선언한거(테스트용)
         //List<Board> boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
