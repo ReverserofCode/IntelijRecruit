@@ -6,143 +6,193 @@
 -->
 <html>
 
+
 <head>
-	<title>Elements - Hyperspace by HTML5 UP</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+	<title>프로젝트 게시판</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="assets/css/main.css"/>
 	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<link rel="stylesheet" href="assets/css/noscript.css"/>
 	</noscript>
+	<script>
+		$(document).ready(function () {
+			getPost();
+		})
+
+		function getPost() {
+			let choose = $("input:radio[name='wantedRole']:checked").val();
+			$('#projectTable').empty();
+			$.ajax({
+				type: "GET",
+				url: `/api/board/${choose}`,
+				data: {},
+				success: function (response) {
+					for (let message of response) {
+						let boardTitle = message['boardTitle'];
+						let memberName = "testId";
+						let boardcreatedTime = message['boardcreatedTime'];
+						addHTML(boardTitle, memberName, boardcreatedTime);
+						console.log(message['boardId']);
+					}
+				}
+			});
+		}
+
+		function addHTML(boardTitle, memberName, boardcreatedTime) {
+			let tempHTML = makeMessage(boardTitle, memberName, boardcreatedTime);
+			$('#projectTable').append(tempHTML);
+		}
+
+		function makeMessage(boardTitle, memberName, boardcreatedTime) {
+			return `<tr>
+					<td>1</td>
+					<td>${boardTitle}</td>
+					<td>${memberName}</td>
+					<td>${boardcreatedTime.substring(0,10)}</td>
+				</tr>`;
+		}
+
+		function searchKey() {
+			let keyword = $('#search').val();
+			let choose = $("input:radio[name='wantedRole']:checked").val();
+			if(keyword=="") {
+				alert("뭐라도 입력하시길");
+				window.location.reload();
+				return;
+			}
+			console.log(keyword);
+			console.log(choose);
+
+			$('#projectTable').empty();
+            $.ajax({
+                type: "PUT",
+                url: `/api/board/${choose}/${keyword}`,
+                data: {},
+                success: function (response) {
+                    for (let message of response) {
+                        let boardTitle = message['boardTitle'];
+                        let memberName = "testId";
+                        let boardcreatedTime = message['boardcreatedTime'];
+                        addHTML(boardTitle, memberName, boardcreatedTime);
+                        console.log(message['boardId']);
+                    }
+                }
+            });
+		}
+
+	</script>
 </head>
 
 <body class="is-preload">
 
-	<!-- Header -->
-	<header id="header">
-		<a href="index.html" class="title">Hyperspace</a>
-		<nav>
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="generic.html">Generic</a></li>
-				<li><a href="elements.html" class="active">Elements</a></li>
-			</ul>
-		</nav>
-	</header>
+<!-- Header -->
+<header id="header">
+	<a href="index.html" class="title">Hyperspace</a>
+	<nav>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="generic.html">Generic</a></li>
+			<li><a href="elements.html" class="active">Elements</a></li>
+		</ul>
+	</nav>
+</header>
 
-<!--
-	&lt;!&ndash; Sidebar &ndash;&gt;
-	<section id="sidebar">
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Main -->
+	<section id="main" class="wrapper">
 		<div class="inner">
-			<nav>
-				<ul>
-					<li><a href="#intro">메인</a></li>
-					<li><a href="#one">게시판</a></li>
+			<h1 class="major">프로젝트 게시판</h1>
 
-					<li><a href="#three">Get in touch</a></li>
+			<!-- Form -->
+			<section>
+				<section onchange="getPost()">
+					<div class="wantedRole wanted_title">모집 역할&nbsp;&nbsp;&nbsp;</div>
+					<div class="col-4 col-12-small wantedRole">
+						<input type="radio" id="role_all" name="wantedRole" value="all" checked>
+						<label for="role_all">전체 선택</label>
+					</div>
+					<div class="col-4 col-12-small wantedRole">
+						<input type="radio" id="role_back" name="wantedRole" value="백엔드">
+						<label for="role_back">백엔드</label>
+					</div>
+					<div class="col-4 col-12-small wantedRole">
+						<input type="radio" id="role_front" name="wantedRole" value="프론트엔드">
+						<label for="role_front">프론트엔드</label>
+					</div>
+					<div class="col-4 col-12-small wantedRole">
+						<input type="radio" id="role_security" name="wantedRole" value="보안">
+						<label for="role_security">보안</label>
+					</div>
+					<div class="col-4 col-12-small wantedRole">
+						<input type="radio" id="role_AI" name="wantedRole" value="AI">
+						<label for="role_AI">AI</label>
+					</div>
+				</section>
+				<!--                <form method="post" action="#" style="right: 0;">-->
+				<form style="right: 0;">
+					<div class="search" style="float: right;">
+						<span class="search_el" style="margin-top: 2%;">검색</span>
+						<span><input type="text" name="demo-name" id="search" placeholder="검색어를 입력하세요" class="search_el" style="width: 50%;" value=""/></span>
+						<!--                        <span><input type="submit" value="search" class="primary search_el"/></span>-->
+						<span><a href="#" class="button primary" onclick="searchKey()">검색</a></span>
+					</div>
+				</form>
+			</section>
+			<!-- Table -->
+			<section style="clear:both;">
+				<h2>Table</h2>
+				<div class="table-wrapper">
+					<table>
+						<thead>
+						<tr>
+							<th>No</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일자</th>
+						</tr>
+						</thead>
+						<tbody id="projectTable"></tbody>
+					</table>
+				</div>
+
+			</section>
+
+			<!-- Buttons -->
+			<section>
+				<h3>Buttons</h3>
+				<ul class="actions">
+					<li><a href="ProjectInsert.html" class="button primary">글 작성하기</a></li>
+					<li><a href="#" class="button">Default</a></li>
 				</ul>
-			</nav>
+			</section>
+
 		</div>
 	</section>
--->
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+</div>
 
-		<!-- Main -->
-		<section id="main" class="wrapper">
-			<div class="inner">
-				<h1 class="major">프로젝트 게시판</h1>
-
-				<!-- Form -->
-				<section>
-					<form method="post" action="#" style="right: 0;">
-						<div class="search" style="float: right;">
-							<span class="search_el" style="margin-top: 2%;">검색</span><span><input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" class="search_el" style="width: 50%;"/></span>
-							<span><input type="submit" value="search" class="primary search_el" /></span>
-						</div>
-					</form>
-				</section>
-				<!-- Table -->
-				<section style="clear:both;">
-					<h2>Table</h2>
-					<div class="table-wrapper">
-						<table>
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>Title</th>
-									<th>ID</th>
-									<th>CreatedAt</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Item One</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Two</td>
-									<td>Vis ac commodo adipiscing arcu aliquet.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Three</td>
-									<td> Morbi faucibus arcu accumsan lorem.</td>
-									<td>29.99</td>
-								</tr>
-								<tr>
-									<td>Item Four</td>
-									<td>Vitae integer tempus condimentum.</td>
-									<td>19.99</td>
-								</tr>
-								<tr>
-									<td>Item Five</td>
-									<td>Ante turpis integer aliquet porttitor.</td>
-									<td>29.99</td>
-								</tr>
-							</tbody>
-
-						</table>
-					</div>
-
-				</section>
-
-				<!-- Buttons -->
-				<section>
-					<h3>Buttons</h3>
-					<ul class="actions">
-						<li><a href="ProjectInsert.html" class="button primary">글 작성하기</a></li>
-						<li><a href="#" class="button">Default</a></li>
-					</ul>
-				</section>
-
-
-
-			</div>
-		</section>
-
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+	<div class="inner">
+		<ul class="menu">
+			<li>개발진: 김다솔, 김동민, 김민규, 이동락, 정민호, 정민영, 정우리</li>
+			<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+		</ul>
 	</div>
+</footer>
 
-	<!-- Footer -->
-	<footer id="footer" class="wrapper alt">
-		<div class="inner">
-			<ul class="menu">
-				<li>&copy; Untitled. All rights reserved.</li>
-				<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</footer>
-
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 
