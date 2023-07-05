@@ -74,7 +74,7 @@ public class BoardController {
                 break;
 
             default: // 기본값은 ALL 항목으로 글 출력
-                boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardWantedRole, boardTitle);
+                boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
                 break;
         }
 
