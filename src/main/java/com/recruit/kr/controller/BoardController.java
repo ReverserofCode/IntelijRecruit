@@ -7,6 +7,7 @@ import com.recruit.kr.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +28,10 @@ public class BoardController {
             case "보안": // 보안 항목으로 글 출력
 
             case "AI": // AI 항목으로 글 출력
-                return boardJparepo.findAllByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+                return boardJparepo.findBoardsByBoardWantedRoleContainingOrderByBoardIdDesc(boardWantedRole);
+
             default: // 기본값은 ALL 항목으로 글 출력
-                return boardJparepo.findAllByOrderByBoardIdDesc();
+                return boardJparepo.findBoardsByOrderByBoardIdDesc();
         }
 
     }
@@ -59,8 +61,23 @@ public class BoardController {
     public List<Board> putBoardTitle(@PathVariable String boardWantedRole, @PathVariable String boardTitle){
         //boardWantedRole="프론트엔드";
         //위에 wantedRole은 임시 변수 선언한거(테스트용)
-        //List<Board> boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardTitle);
-        List<Board> boardList = boardJparepo.findAllByBoardWantedRoleContainingAndBoardTitleContainingOrderByBoardIdDesc(boardWantedRole, boardTitle);
+        List<Board> boardList = new ArrayList<>();
+        switch (boardWantedRole){
+            case "프론트엔드": // 프론트 엔드 항목으로 글 출력
+
+            case "백엔드": // 백엔드 항목으로 글 출력
+
+            case "보안": // 보안 항목으로 글 출력
+
+            case "AI": // AI 항목으로 글 출력
+                boardList = boardJparepo.findBoardsByBoardWantedRoleContainingAndBoardTitleContainingOrderByBoardIdDesc(boardWantedRole, boardTitle);
+                break;
+
+            default: // 기본값은 ALL 항목으로 글 출력
+                boardList = boardJparepo.findBoardsByBoardTitleContainingOrderByBoardIdDesc(boardWantedRole, boardTitle);
+                break;
+        }
+
         return boardList;
         //검색 결과 없을때 굳이 return null 해 줄 필요 없어 보여서 그냥 검색 결과 명단만 출력 하게 만듬
     }
