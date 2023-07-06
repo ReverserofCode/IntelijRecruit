@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class LoginController {
     @GetMapping("/all")
     public void exAll() {
@@ -17,10 +17,8 @@ public class LoginController {
     }
 
     @GetMapping("/member")
-    @PreAuthorize("hasRole('USER')")
-    public String Member() {
+    public void Member() {
         log.info("exMember..........");
-        return "/member.html";
     }
 
     @GetMapping("/admin")

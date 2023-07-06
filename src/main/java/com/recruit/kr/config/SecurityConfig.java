@@ -18,12 +18,14 @@ public class SecurityConfig{
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests((auth)->{
+           auth.antMatchers("/all").permitAll();
+           auth.antMatchers("/member").permitAll();
+        });
+
         http.formLogin();
-        http.csrf().disable();
-        http.logout();
         return http.build();
     }
 }
