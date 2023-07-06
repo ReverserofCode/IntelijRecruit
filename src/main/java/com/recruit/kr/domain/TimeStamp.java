@@ -18,6 +18,6 @@ public class TimeStamp {
     private LocalDateTime boardcreatedTime;
 
     @LastModifiedDate //수정시간
-    private LocalDateTime boardmodifedTime;
+    private LocalDateTime boardmodifiedTime;
 
 }
