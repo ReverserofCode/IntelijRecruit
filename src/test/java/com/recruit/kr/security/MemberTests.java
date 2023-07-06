@@ -39,7 +39,6 @@ public class MemberTests {
                     .roleSet(new HashSet<MemberRole>())
                     .memberPw(  passwordEncoder.encode("1111") )
                     .build();
-
             //default role
             member.addMemberRole(MemberRole.USER);
             if(i > 80){
