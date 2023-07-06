@@ -1,21 +1,24 @@
 package com.recruit.kr.domain.member;
 
-import lombok.*;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-//Entity를 관리하는 DTO클래스
+@Log4j2
+@Getter
+@Setter
+@ToString
+public class MemberAuthDTO extends User {
 
-
-@Data
-@RequiredArgsConstructor
-public class MemberDTO {
-
-    private String memberAge;
     private String memberId;
     private String memberPw;
+    private String memberAge;
     private String memberName;
     private String memberGender;
     private String memberPhoneNumber;
@@ -23,5 +26,11 @@ public class MemberDTO {
     private String memberTechStack;
     private String memberCourseIsu;
     private String memberWebUrl;
+
+    public MemberAuthDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+        this.memberId = username;
+        this.memberPw = password;
+    }
 
 }

@@ -1,15 +1,18 @@
 package com.recruit.kr.domain.member;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity //데이터 베이스 테이블
 @Getter //게터 세팅
-@NoArgsConstructor //기본 생성자 자동 생성
+@Builder
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class) //변화 감지
 public class Member {
 
@@ -17,32 +20,47 @@ public class Member {
     @Column(name="memberid",unique = true) //컬럼 직접설정
     private String memberId;
 
-    @Column(nullable = false)
     private String memberPw;
 
-    @Column(nullable = false)
     private String memberName;
 
-    @Column(nullable = false)
     private String memberGender;
 
-    @Column(nullable = false)
     private String memberAge;
 
-    @Column(nullable = false)
     private String memberPhoneNumber;
 
-    @Column(nullable = false)
     private String memberEmail;
 
-    @Column(nullable = false)
     private String memberTechStack;
 
-    @Column(nullable = false)
     private String memberCourseIsu;
 
-    @Column(nullable = false)
     private String memberWebUrl;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    private Set<MemberRole> roleSet;
+
+    public void addMemberRole(MemberRole memberRole){
+        roleSet.add(memberRole);
+    }
+
+    @Builder
+    public Member(String memberId, String memberPw, String memberName, String memberGender, String memberAge,
+                  String memberPhoneNumber, String memberEmail, String memberTechStack, String memberCourseIsu,
+                  String memberWebUrl, Set<MemberRole> roleSet) {
+        this.memberId = memberId;
+        this.memberPw = memberPw;
+        this.memberName = memberName;
+        this.memberGender = memberGender;
+        this.memberAge = memberAge;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberEmail = memberEmail;
+        this.memberTechStack = memberTechStack;
+        this.memberCourseIsu = memberCourseIsu;
+        this.memberWebUrl = memberWebUrl;
+        this.roleSet = roleSet;
+    }
 
     //엔티티로 값을 넘겨주는 DTO 설계
     public Member(MemberDTO memberDTO) {
