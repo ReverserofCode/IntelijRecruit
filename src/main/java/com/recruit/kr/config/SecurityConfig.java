@@ -20,12 +20,16 @@ public class SecurityConfig{
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        log.info("------------------------------------filterChain-----------------------------");
         http.authorizeRequests((auth)->{
            auth.antMatchers("/all").permitAll();
-           auth.antMatchers("/member").permitAll();
+           auth.antMatchers("/member").hasRole("USER");
+           auth.antMatchers("/admin").permitAll();
         });
 
         http.formLogin();
+        http.csrf().disable();
+        http.logout();
         return http.build();
     }
 }
