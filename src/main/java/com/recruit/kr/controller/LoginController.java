@@ -23,9 +23,8 @@ public class LoginController {
 
     @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public String exAdmin() {
+    public void exAdmin() {
         log.info("exAdmin..........");
-        return "/admin.html";
     }
 
 

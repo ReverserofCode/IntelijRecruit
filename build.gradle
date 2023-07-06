@@ -31,11 +31,7 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j:8.0.32'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.8'
-
-	// Add dependencies for Spring Security login processing
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.5'
-
-	// Adding a tymeleaf Dependency for Login Implementation
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.7.8'
 	implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.5.3')
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.3.RELEASE'
