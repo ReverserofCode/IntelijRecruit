@@ -27,10 +27,22 @@ public class MemberAuthDTO extends User {
     private String memberCourseIsu;
     private String memberWebUrl;
 
-    public MemberAuthDTO(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public MemberAuthDTO(String username, String password,
+                         String memberAge, String memberEmail, String memberGender,
+                         String memberPhoneNumber, String memberTechStack,
+                         String memberCourseIsu, String memberWebUrl, String memberName,Collection<? extends GrantedAuthority> authorities) {
+
         super(username, password, authorities);
         this.memberId = username;
         this.memberPw = password;
+        this.memberAge = memberAge;
+        this.memberName = memberName;
+        this.memberGender = memberGender;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberEmail = memberEmail;
+        this.memberTechStack = memberTechStack;
+        this.memberCourseIsu = memberCourseIsu;
+        this.memberWebUrl = memberWebUrl;
     }
 
 }

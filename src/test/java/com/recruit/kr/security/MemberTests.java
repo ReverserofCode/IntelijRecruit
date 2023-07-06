@@ -33,9 +33,13 @@ public class MemberTests {
             Member member = Member.builder()
                     .memberId("user"+i+"@zerock.org")
                     .memberName("사용자"+i)
+                    .memberAge("TestAge")
+                    .memberPhoneNumber("TestPhoneNumber")
+                    .memberGender("남자"+i)
                     .roleSet(new HashSet<MemberRole>())
                     .memberPw(  passwordEncoder.encode("1111") )
                     .build();
+
             //default role
             member.addMemberRole(MemberRole.USER);
             if(i > 80){

@@ -29,7 +29,7 @@ public class MemberDetailsService implements UserDetailsService {
         Optional<Member> result = memberJparepo.findById(username);
         Member member = result.orElse(null);
 
-        if(member == null){
+        if (member == null) {
             throw new UsernameNotFoundException("Check User Email or from Social ");
         }
         member = result.get();
@@ -39,8 +39,16 @@ public class MemberDetailsService implements UserDetailsService {
         MemberAuthDTO memberAuthDTO = new MemberAuthDTO(
                 member.getMemberId(),
                 member.getMemberPw(),
+                member.getMemberAge(),
+                member.getMemberName(),
+                member.getMemberGender(),
+                member.getMemberPhoneNumber(),
+                member.getMemberEmail(),
+                member.getMemberTechStack(),
+                member.getMemberCourseIsu(),
+                member.getMemberWebUrl(),
                 member.getRoleSet().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_"+role.name()))
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                         .collect(Collectors.toSet())
         );
         memberAuthDTO.setMemberName(member.getMemberName());
