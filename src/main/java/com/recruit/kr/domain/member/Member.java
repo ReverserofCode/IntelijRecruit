@@ -19,23 +19,14 @@ public class Member {
     @Id //PK 설정
     @Column(name="memberid",unique = true) //컬럼 직접설정
     private String memberId;
-
     private String memberPw;
-
     private String memberName;
-
     private String memberGender;
-
     private String memberAge;
-
     private String memberPhoneNumber;
-
     private String memberEmail;
-
     private String memberTechStack;
-
     private String memberCourseIsu;
-
     private String memberWebUrl;
 
     @ElementCollection(fetch = FetchType.LAZY)
