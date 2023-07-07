@@ -1,35 +1,16 @@
 package com.recruit.kr.controller;
 
-
-import com.recruit.kr.domain.member.MemberAuthDTO;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.recruit.kr.domain.member.MemberLoginDTO;
+import org.springframework.web.bind.annotation.*;
 
 @Log4j2
-@Controller
-@RequestMapping("/")
+@RestController
+@RequestMapping("/login")
 public class LoginController {
-    @GetMapping("/all")
-    public void exAll() {
-        log.info("exAll..........");
+    @PostMapping("/requestLogin")
+    public void loginCheck(@RequestBody MemberLoginDTO memberLoginDTO) {
+        log.info("---------------------------------------Login Controller--------------------------------------");
+        log.info(memberLoginDTO);
     }
-
-    @GetMapping("/member")
-    public void Member(@AuthenticationPrincipal MemberAuthDTO memberAuthDTO) {
-
-        log.info(memberAuthDTO);
-        log.info("exMember..........");
-    }
-
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public void exAdmin() {
-        log.info("exAdmin..........");
-    }
-
-
 }

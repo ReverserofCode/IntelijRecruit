@@ -2,7 +2,6 @@ package com.recruit.kr.service;
 
 import com.recruit.kr.domain.member.Member;
 import com.recruit.kr.domain.member.MemberAuthDTO;
-import com.recruit.kr.domain.member.MemberDTO;
 import com.recruit.kr.domain.member.Member_JPAREPO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,13 +23,13 @@ public class MemberDetailsService implements UserDetailsService {
     private final Member_JPAREPO memberJparepo;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("ClubUserDetailsService loadUserByUsername " + username);
-        Optional<Member> result = memberJparepo.findById(username);
+    public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
+        log.info("ClubUserDetailsService loadUserByUsername " + memberId);
+        Optional<Member> result = memberJparepo.findById(memberId);
         Member member = result.orElse(null);
 
         if (member == null) {
-            throw new UsernameNotFoundException("Check User Email or from Social ");
+            throw new UsernameNotFoundException("Check User ID or from Password ");
         }
         member = result.get();
         log.info("-----------------------------");

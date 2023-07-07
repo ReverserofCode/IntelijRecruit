@@ -5,6 +5,25 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script>
+    function loginPost(){
+        let data = {'memberId':$('#memberId').val(), 'memberPw':$('#memberPw').val()}
+
+        $.ajax({
+            type: "POST",
+            url: "/login/requestLogin",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success:function(response){
+                alert('로그인 데이터 전송');
+                window.location.reload();
+            }
+        });
+    }
+</script>
+
 
 <head>
     <title>로그인 사이트</title>
@@ -45,19 +64,18 @@
                 <h1 class="major">로그인</h1>
                 <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
-                    <label for="ID">아이디</label>
-                    <input type="text" name="ID" id="ID" /> <br>
+                    <label for="memberId">아이디</label>
+                    <input type="text" name="memberId" id="memberId" /> <br>
 
-                    <label for="PW">비밀번호</label>
-                    <input type="text" name="PW" id="PW" /> <br>
+                    <label for="memberPw">비밀번호</label>
+                    <input type="text" name="memberPw" id="memberPw" /> <br>
                 </div>
 
                 <ul class="actions" style="margin-left: 13%;">
-                    <li><a href="#" class="button primary">로그인</a></li>
-                    <li><a href="index.html" class="button">취소</a></li>
+                    <li><a href="#" class="button primary" onclick="loginPost()">로그인</a></li>
+                    <li><a href="index.html" class="button" onclick="window.location.reload()">취소</a></li>
                 </ul>
             </div>
-
         </section>
 
 

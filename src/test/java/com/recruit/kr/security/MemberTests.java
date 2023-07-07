@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -21,7 +20,6 @@ public class MemberTests {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Test
     public void insertDummies() {
 
@@ -48,8 +46,6 @@ public class MemberTests {
                 member.addMemberRole(MemberRole.ADMIN);
             }
             memberJparepo.save(member);
-
         });
-
     }
 }
