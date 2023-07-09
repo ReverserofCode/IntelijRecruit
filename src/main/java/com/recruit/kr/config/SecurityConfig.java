@@ -36,8 +36,9 @@ public class SecurityConfig{
                 .loginProcessingUrl("/loginProcess")
                 .defaultSuccessUrl("/")
         ;
-        http.csrf().disable();
         http.logout();
+
+        http.csrf().disable();
         return http.build();
     }
 }
