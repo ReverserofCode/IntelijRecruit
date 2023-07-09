@@ -14,9 +14,12 @@ public class SecurityController {
     public void getLoginPage(){
         log.info("call by Login page");
     }
-
     @GetMapping("/member")
     public void getMember(){
         log.info("Request pass to member");
+    }
+    @GetMapping("/admin")
+    public void getAdmin(){
+        log.info("Request pass to Admin");
     }
 }

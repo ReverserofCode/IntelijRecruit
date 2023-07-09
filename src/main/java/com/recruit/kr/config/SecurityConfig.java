@@ -25,7 +25,7 @@ public class SecurityConfig{
         http.authorizeRequests((auth)->{
            auth.antMatchers("/all").permitAll();
            auth.antMatchers("/member").hasRole("USER");
-           auth.antMatchers("/admin").permitAll();
+           auth.antMatchers("/admin").hasRole("ADMIN");
            auth.antMatchers("/login.html").permitAll();
            auth.antMatchers("/assets/**").permitAll();
            auth.antMatchers("/images/**").permitAll();
@@ -37,7 +37,6 @@ public class SecurityConfig{
                 .defaultSuccessUrl("/")
         ;
         http.logout();
-
         http.csrf().disable();
         return http.build();
     }
