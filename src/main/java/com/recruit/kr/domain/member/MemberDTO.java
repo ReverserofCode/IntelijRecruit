@@ -13,9 +13,9 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class MemberDTO {
 
-    private String memberAge;
     private String memberId;
     private String memberPw;
+    private String memberAge;
     private String memberName;
     private String memberGender;
     private String memberPhoneNumber;

@@ -32,8 +32,8 @@ public class SecurityConfig{
         });
 
         http.formLogin()
-                .loginPage("/login.html")
-                .loginProcessingUrl("/loginProc")
+                .loginPage("/login")
+                .loginProcessingUrl("/loginProcess")
                 .defaultSuccessUrl("/")
         ;
         http.csrf().disable();

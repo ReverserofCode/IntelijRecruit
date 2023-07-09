@@ -21,36 +21,37 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MemberDetailsService implements UserDetailsService {
     private final Member_JPAREPO memberJparepo;
-
     @Override
     public UserDetails loadUserByUsername(String memberId) throws UsernameNotFoundException {
-        log.info("ClubUserDetailsService loadUserByUsername " + memberId);
-        Optional<Member> result = memberJparepo.findById(memberId);
-        Member member = result.orElse(null);
+        log.info("----------------------------------UserDetailService----------------------------------------------");
+        log.info("UserDetailService loadUserByUsername " + memberId);
 
-        if (member == null) {
-            throw new UsernameNotFoundException("Check User ID or from Password ");
+        Optional<Member> result = memberJparepo.findById(memberId);
+
+        if(result.isEmpty()){
+            throw new UsernameNotFoundException("Check Your ID");
         }
-        member = result.get();
-        log.info("-----------------------------");
+
+        Member member = result.get();
+
+        log.info("---------------------------------------------------------------------------------------------------");
         log.info(member);
 
-        MemberAuthDTO memberAuthDTO = new MemberAuthDTO(
+        MemberAuthDTO memberAuth = new MemberAuthDTO(
                 member.getMemberId(),
                 member.getMemberPw(),
-                member.getMemberAge(),
                 member.getMemberName(),
                 member.getMemberGender(),
+                member.getMemberAge(),
                 member.getMemberPhoneNumber(),
                 member.getMemberEmail(),
                 member.getMemberTechStack(),
                 member.getMemberCourseIsu(),
                 member.getMemberWebUrl(),
-                member.getRoleSet().stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
-                        .collect(Collectors.toSet())
+                member.getRoleSet().stream().map(role->new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
         );
-        memberAuthDTO.setMemberName(member.getMemberName());
-        return memberAuthDTO;
+        memberAuth.setMemberName(member.getMemberName());
+
+        return memberAuth;
     }
 }

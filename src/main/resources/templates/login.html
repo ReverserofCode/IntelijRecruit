@@ -8,20 +8,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 <script>
-    function loginPost() {
-        let data = {'memberId': $('#username').val(), 'memberPw': $('#password').val()}
-
-        $.ajax({
-            type: "POST",
-            url: "/login/requestLogin",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (response) {
-                alert('로그인 데이터 전송');
-                window.location.reload();
-            }
-        });
-    }
+    // function loginPost() {
+    //     let data = {
+    //         'username': $('#username').val(),
+    //         'password': $('#password').val(),
+    //         'authorities':$('#authorities').val()}
+    //
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/login/requestLogin",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(data),
+    //         success: function (response) {
+    //             console.log(response)
+    //
+    //             alert('로그인 데이터 전송');
+    //             window.location.reload();
+    //         },
+    //         error: function (error){
+    //
+    //         console.log(error);
+    //         }
+    //     });
+    // }
 </script>
 
 
@@ -44,10 +53,10 @@
 
 <!-- Header -->
 <header id="header">
-    <a href="../static/index.html" class="title">Hyperspace</a>
+    <a href="/index.html" class="title">Hyperspace</a>
     <nav>
         <ul>
-            <li><a href="../static/index.html">Home</a></li>
+            <li><a href="/index.html">Home</a></li>
             <li><a href="../static/generic.html" class="active">Generic</a></li>
             <li><a href="../static/elements.html">Elements</a></li>
         </ul>
@@ -62,7 +71,7 @@
 
         <div class="inner">
             <h1 class="major">로그인</h1>
-            <form th:action="@{/login}" method="post">
+            <form th:action="@{/loginProcess}" method="post">
                 <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
                     <label for="username">아이디</label>
@@ -70,11 +79,14 @@
 
                     <label for="password">비밀번호</label>
                     <input type="text" name="password" id="password"/> <br>
+
+<!--                    &lt;!&ndash; authorities 정보를 추가 &ndash;&gt;-->
+                    <input type="hidden" name="authorities" id="authorities" value="ROLE_USER"/>
                 </div>
 
                 <ul class="actions" style="margin-left: 13%;">
-                    <li><a href="#" class="button primary" onclick="loginPost()">로그인</a></li>
-                    <li><a href="../static/index.html" class="button" onclick="window.location.reload()">취소</a></li>
+                    <li><button type="submit" class="button primary" >로그인</button></li>
+                    <li><a href="/index.html" class="button" onclick="window.location.reload()">취소</a></li>
                 </ul>
             </form>
         </div>
