@@ -8,26 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Log4j2
 @Controller
-@RequestMapping("/")
 public class SecurityController {
-
-        @GetMapping("/all")
-        public void exAll() {
-            log.info("exAll..........");
-        }
-
-        @PreAuthorize("hasRole('USER')")
-        @GetMapping("/member")
-        public void Member() {
-            log.info("exMember..........");
-        }
-
-        @PreAuthorize("hasRole('ADMIN')")
-        @GetMapping("/admin")
-        public void exAdmin() {
-
-            log.info("exAdmin..........");
-
-        }
+    @GetMapping("/login")
+    public void getLoginPage(){
+        log.info("call by Login page");
     }
+}
 

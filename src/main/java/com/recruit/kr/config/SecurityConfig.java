@@ -27,6 +27,8 @@ public class SecurityConfig{
            auth.antMatchers("/member").hasRole("USER");
            auth.antMatchers("/admin").permitAll();
            auth.antMatchers("/login.html").permitAll();
+           auth.antMatchers("/assets/**").permitAll();
+           auth.antMatchers("/images/**").permitAll();
         });
 
         http.formLogin()
