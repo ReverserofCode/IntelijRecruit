@@ -68,7 +68,7 @@ public class BoardController {
     //게시판 들어가서 확인할때 호출하는 부분
 
 
-    @RequestMapping("/ProjectPage.html/{boardId}")
+    @RequestMapping("/ProjectPage/{boardId}")
     public String getOne() {
         return "";
     }
@@ -111,6 +111,17 @@ public class BoardController {
     public void deleteBoard(@PathVariable Long boardId){
         boardJparepo.deleteById(boardId);
     }
+
+    @GetMapping("/api/board/getOne/{boardId}")
+    public Board getRead(@PathVariable Long boardId){
+        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+        Board board = new Board();
+        if(optionalBoard.isPresent()) {
+            board = optionalBoard.get();
+        }
+        return board;
+    }
+
 
     //수정 API
     @PatchMapping("/api/board/{boardId}")
