@@ -34,6 +34,7 @@ public class BoardController {
                 return boardJparepo.findBoardsByOrderByBoardIdDesc();
         }
     }
+
     @GetMapping("/api/board/getOne/{boardId}")
     public Board getRead(@PathVariable Long boardId){
         Optional <Board> optionalBoard = boardJparepo.findById(boardId);
@@ -46,6 +47,11 @@ public class BoardController {
     //게시판 들어가서 확인할때 호출하는 부분
 
 
+    @RequestMapping("/ProjectPage.html/{boardId}")
+    public String getOne() {
+        return "";
+    }
+
     //등록 API
     @PostMapping("/api/board")
     public Board postBoard(@RequestBody BoardDTO boardDTO){
@@ -53,8 +59,6 @@ public class BoardController {
         boardJparepo.save(board);
         return board;
     }
-
-
 
     @PutMapping("/api/board/{boardWantedRole}/{boardTitle}")
     public List<Board> putBoardTitle(@PathVariable String boardWantedRole, @PathVariable String boardTitle){
