@@ -4,7 +4,9 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<title>프로젝트 게시판</title>
@@ -15,7 +17,16 @@
 	<noscript>
 		<link rel="stylesheet" href="./assets/css/noscript.css"/>
 	</noscript>
+	<script th:inline="javascript">
+		function test(){
+			let name = [[${MemberId}]];
+			console.log(name)
+		}
+	</script>
+
 	<script>
+
+
 		$(document).ready(function () {
 			getPost();
 		})
@@ -72,7 +83,7 @@
                 success: function (response) {
                     for (let message of response) {
                         let boardTitle = message['boardTitle'];
-                        let memberName = sec:authentication="name";
+                        let memberName = "testId";
                         let boardcreatedTime = message['boardcreatedTime'];
                         addHTML(boardTitle, memberName, boardcreatedTime);
                         console.log(message['boardId']);
