@@ -51,6 +51,15 @@ public class BoardController {
         model.addObject("createdTime",board.getBoardcreatedTime());
         return model;
     }
+    @GetMapping("/api/board/getOne/{boardId}")
+    public Board getRead(@PathVariable Long boardId){
+        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+        Board board = new Board();
+        if(optionalBoard.isPresent()) {
+            board = optionalBoard.get();
+        }
+        return board;
+    }
     //게시판 들어가서 확인할때 호출하는 부분
 
 //    @RequestMapping("/api/board/getOne/{boardId}")
@@ -68,7 +77,7 @@ public class BoardController {
     //게시판 들어가서 확인할때 호출하는 부분
 
 
-    @RequestMapping("/ProjectPage/{boardId}")
+    @RequestMapping("/ProjectPage.html/{boardId}")
     public String getOne() {
         return "";
     }
@@ -112,15 +121,7 @@ public class BoardController {
         boardJparepo.deleteById(boardId);
     }
 
-    @GetMapping("/api/board/getOne/{boardId}")
-    public Board getRead(@PathVariable Long boardId){
-        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
-        Board board = new Board();
-        if(optionalBoard.isPresent()) {
-            board = optionalBoard.get();
-        }
-        return board;
-    }
+
 
 
     //수정 API
