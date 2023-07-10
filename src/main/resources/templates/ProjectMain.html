@@ -4,29 +4,24 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml"
-	  xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+<html
+		xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
 
 <head>
 	<title>프로젝트 게시판</title>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<link rel="stylesheet" href="./assets/css/main.css"/>
+	<link rel="stylesheet" href="assets/css/main.css"/>
 	<noscript>
-		<link rel="stylesheet" href="./assets/css/noscript.css"/>
+		<link rel="stylesheet" href="assets/css/noscript.css"/>
 	</noscript>
-	<script th:inline="javascript">
-		function test(){
-			let name = [[${MemberId}]];
-			console.log(name)
-		}
-	</script>
+
 
 	<script>
-
-
 		$(document).ready(function () {
 			getPost();
 		})
@@ -40,25 +35,26 @@
 				data: {},
 				success: function (response) {
 					for (let message of response) {
+						let boardId = message['boardId'];
 						let boardTitle = message['boardTitle'];
-						let memberName = "testId";
+						let memberName = message['boardAuthor'];
 						let boardcreatedTime = message['boardcreatedTime'];
-						addHTML(boardTitle, memberName, boardcreatedTime);
-						console.log(message['boardId']);
+						addHTML(boardId, boardTitle, memberName, boardcreatedTime);
+						console.log(boardId);
 					}
 				}
 			});
 		}
 
-		function addHTML(boardTitle, memberName, boardcreatedTime) {
-			let tempHTML = makeMessage(boardTitle, memberName, boardcreatedTime);
+		function addHTML(boardId, boardTitle, memberName, boardcreatedTime) {
+			let tempHTML = makeMessage(boardId,boardTitle, memberName, boardcreatedTime);
 			$('#projectTable').append(tempHTML);
 		}
 
-		function makeMessage(boardTitle, memberName, boardcreatedTime) {
+		function makeMessage(boardId, boardTitle, memberName, boardcreatedTime) {
 			return `<tr>
 					<td>1</td>
-					<td>${boardTitle}</td>
+					<td><a href='/api/board/getOne/${boardId}'>${boardTitle}</td>
 					<td>${memberName}</td>
 					<td>${boardcreatedTime.substring(0,10)}</td>
 				</tr>`;
@@ -75,6 +71,8 @@
 			console.log(keyword);
 			console.log(choose);
 
+
+
 			$('#projectTable').empty();
             $.ajax({
                 type: "PUT",
@@ -83,7 +81,7 @@
                 success: function (response) {
                     for (let message of response) {
                         let boardTitle = message['boardTitle'];
-                        let memberName = "testId";
+                        let memberName = message['boardAuthor'];
                         let boardcreatedTime = message['boardcreatedTime'];
                         addHTML(boardTitle, memberName, boardcreatedTime);
                         console.log(message['boardId']);
@@ -93,20 +91,21 @@
 		}
 
 	</script>
+
+
 </head>
 
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
-	<a href="/index.html" class="title">Hyperspace</a>
+	<a href="index.html" class="title">Hyperspace</a>
 	<nav>
 		<ul>
-			<li><a href="/index.html">Home</a></li>
-			<li><a href="/generic.html">Generic</a></li>
-			<li><a href="/elements.html" class="active">Elements</a></li>
-			<li>로그인 ID: <div sec:authentication="name"></div></li>
-			<li>사용자 이름 : <div sec:authentication="principal.memberName"></div></li>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="generic.html">Generic</a></li>
+			<li><a href="elements.html" class="active">Elements</a></li>
+			<li> <span th:text="${#authentication.name}"></span>님 </li>
 		</ul>
 	</nav>
 </header>
@@ -177,7 +176,7 @@
 			<section>
 				<h3>Buttons</h3>
 				<ul class="actions">
-					<li><a href="/ProjectInsert.html" class="button primary">글 작성하기</a></li>
+					<li><a href="/ProjectInsert" class="button primary">글 작성하기</a></li>
 					<li><a href="#" class="button">Default</a></li>
 				</ul>
 			</section>
@@ -198,13 +197,13 @@
 </footer>
 
 <!-- Scripts -->
-<script src="./assets/js/jquery.min.js"></script>
-<script src="./assets/js/jquery.scrollex.min.js"></script>
-<script src="./assets/js/jquery.scrolly.min.js"></script>
-<script src="./assets/js/browser.min.js"></script>
-<script src="./assets/js/breakpoints.min.js"></script>
-<script src="./assets/js/util.js"></script>
-<script src="./assets/js/main.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
 
 </body>
 

@@ -35,7 +35,7 @@ public class MemberDetailsService implements UserDetailsService {
         Member member = result.get();
 
         log.info("---------------------------------------------------------------------------------------------------");
-        log.info(member);
+        log.info(member.toString());
 
         MemberAuthDTO memberAuth = new MemberAuthDTO(
                 member.getMemberId(),
@@ -51,7 +51,7 @@ public class MemberDetailsService implements UserDetailsService {
                 member.getRoleSet().stream().map(role->new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
         );
         memberAuth.setMemberName(member.getMemberName());
-
+        log.info(memberAuth.toString());
         return memberAuth;
     }
 }

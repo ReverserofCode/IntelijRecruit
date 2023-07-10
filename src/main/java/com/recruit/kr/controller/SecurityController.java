@@ -26,4 +26,8 @@ public class SecurityController {
     public void getProjectMain() {
         log.info("Request Project Main");
     }
+    @GetMapping("/ProjectInsert")
+    public void getProjectInsert(){
+        log.info("ProjectInsert");
+    }
 }

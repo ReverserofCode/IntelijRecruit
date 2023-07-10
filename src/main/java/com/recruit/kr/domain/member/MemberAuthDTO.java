@@ -41,9 +41,9 @@ public class MemberAuthDTO extends User {
         super(username, password, authorities);
         this.memberId = username;
         this.memberPw = password;
+        this.memberAge = memberAge;
         this.memberName = memberName;
         this.memberGender = memberGender;
-        this.memberAge = memberAge;
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberEmail = memberEmail;
         this.memberTechStack = memberTechStack;

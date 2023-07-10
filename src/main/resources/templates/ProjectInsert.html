@@ -4,7 +4,10 @@
    html5up.net | @ajlkn
    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <script>
     //230630 게시판 등록 AJAX 테스트 (완료)
@@ -17,7 +20,7 @@
         });
 
         let data = {'boardTitle': $(`#boardTitle`).val(), 'boardWantedRole':boardWantedRoleList.toString(),
-            'boardContent': $(`#boardContent`).val(),'boardAuthor': "우리"};
+            'boardContent': $(`#boardContent`).val(), 'boardAuthor': $('#boardauthor').val()};
 
         $.ajax({
             type: "POST",
@@ -37,9 +40,9 @@
     <title>프로젝트 글 작성</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="assets/css/main.css"/>
+    <link rel="stylesheet" href="./assets/css/main.css"/>
     <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css"/>
+        <link rel="stylesheet" href="./assets/css/noscript.css"/>
     </noscript>
     <style>
         ul.li {
@@ -52,12 +55,13 @@
 
 <!-- Header -->
 <header id="header">
-    <a href="index.html" class="title">Hyperspace</a>
+    <a href="/index.html" class="title">Hyperspace</a>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html" class="active">Generic</a></li>
-            <li><a href="elements.html">Elements</a></li>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/generic.html" class="active">Generic</a></li>
+            <li><a href="/elements.html">Elements</a></li>
+            <li><span th:text="${#authentication.name}"></span>님</li>
         </ul>
     </nav>
 </header>
@@ -71,7 +75,7 @@
         <div class="inner">
             <h1 class="major">프로젝트 글 작성</h1>
             <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
-
+                <input type="hidden" th:value="${#authentication.name}" id="boardauthor"/>
                 <label for="boardTitle">제목</label>
                 <input type="text" name="boardTitle" id="boardTitle"/> <br>
                 <label for="boardWantedRole">모집 역할</label>
@@ -113,13 +117,13 @@
 </footer>
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="./assets/js/jquery.min.js"></script>
+<script src="./assets/js/jquery.scrollex.min.js"></script>
+<script src="./assets/js/jquery.scrolly.min.js"></script>
+<script src="./assets/js/browser.min.js"></script>
+<script src="./assets/js/breakpoints.min.js"></script>
+<script src="./assets/js/util.js"></script>
+<script src="./assets/js/main.js"></script>
 
 </body>
 
