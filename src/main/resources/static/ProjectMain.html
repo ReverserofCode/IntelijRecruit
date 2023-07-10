@@ -30,25 +30,26 @@
 				data: {},
 				success: function (response) {
 					for (let message of response) {
+						let boardId = message['boardId'];
 						let boardTitle = message['boardTitle'];
 						let memberName = "testId";
 						let boardcreatedTime = message['boardcreatedTime'];
-						addHTML(boardTitle, memberName, boardcreatedTime);
-						console.log(message['boardId']);
+						addHTML(boardId, boardTitle, memberName, boardcreatedTime);
+						console.log(boardId);
 					}
 				}
 			});
 		}
 
-		function addHTML(boardTitle, memberName, boardcreatedTime) {
-			let tempHTML = makeMessage(boardTitle, memberName, boardcreatedTime);
+		function addHTML(boardId, boardTitle, memberName, boardcreatedTime) {
+			let tempHTML = makeMessage(boardId,boardTitle, memberName, boardcreatedTime);
 			$('#projectTable').append(tempHTML);
 		}
 
-		function makeMessage(boardTitle, memberName, boardcreatedTime) {
+		function makeMessage(boardId, boardTitle, memberName, boardcreatedTime) {
 			return `<tr>
 					<td>1</td>
-					<td>${boardTitle}</td>
+					<td><a href='/api/board/getOne/${boardId}'>${boardTitle}</td>
 					<td>${memberName}</td>
 					<td>${boardcreatedTime.substring(0,10)}</td>
 				</tr>`;

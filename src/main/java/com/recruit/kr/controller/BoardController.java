@@ -6,6 +6,7 @@ import com.recruit.kr.domain.board.Board_JPAREPO;
 import com.recruit.kr.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +35,27 @@ public class BoardController {
                 return boardJparepo.findBoardsByOrderByBoardIdDesc();
         }
     }
-    @GetMapping("/api/board/getOne/{boardId}")
-    public Board getRead(@PathVariable Long boardId){
+//    @GetMapping("/api/board/getOne/{boardId}")
+//    public Board getRead(@PathVariable Long boardId){
+//        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+//        Board board = new Board();
+//        if(optionalBoard.isPresent()) {
+//            board = optionalBoard.get();
+//        }
+//        return board;
+//    }
+//    //게시판 들어가서 확인할때 호출하는 부분
+
+    @RequestMapping("/api/board/getOne/{boardId}")
+    public ModelAndView getRead(@PathVariable Long boardId, ModelAndView model){
         Optional <Board> optionalBoard = boardJparepo.findById(boardId);
         Board board = new Board();
         if(optionalBoard.isPresent()) {
             board = optionalBoard.get();
         }
-        return board;
+        model.setViewName("ProjectPage.html");
+        model.addObject("board", board);
+        return model;
     }
     //게시판 들어가서 확인할때 호출하는 부분
 
