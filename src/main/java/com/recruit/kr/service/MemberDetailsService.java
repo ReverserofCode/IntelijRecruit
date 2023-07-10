@@ -28,7 +28,7 @@ public class MemberDetailsService implements UserDetailsService {
 
         Optional<Member> result = memberJparepo.findById(memberId);
 
-        if(result.isEmpty()){
+        if(!(result.isPresent())){
             throw new UsernameNotFoundException("Check Your ID");
         }
 
