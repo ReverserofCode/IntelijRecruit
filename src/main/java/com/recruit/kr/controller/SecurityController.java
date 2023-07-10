@@ -8,15 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SecurityController {
     @GetMapping("/login")
-    public void getLoginPage(){
+    public void getLoginPage() {
         log.info("call by Login page");
     }
+
     @GetMapping("/member")
-    public void getMember(){
+    public void getMember() {
         log.info("Request pass to member");
     }
+
     @GetMapping("/admin")
-    public void getAdmin(){
+    public void getAdmin() {
         log.info("Request pass to Admin");
+    }
+
+    @GetMapping("/ProjectMain")
+    public void getProjectMain() {
+        log.info("Request Project Main");
     }
 }

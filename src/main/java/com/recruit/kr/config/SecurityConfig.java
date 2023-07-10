@@ -30,7 +30,6 @@ public class SecurityConfig{
            auth.antMatchers("/assets/**").permitAll();
            auth.antMatchers("/images/**").permitAll();
         });
-
         http.formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/loginProcess")
