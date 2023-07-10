@@ -4,7 +4,7 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-<html>
+<html lang="ko" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
 	<title>프로젝트 게시판</title>
@@ -88,13 +88,13 @@
 
 <!-- Header -->
 <header id="header">
-	<a href="../static/index.html" class="title">Hyperspace</a>
+	<a href="/index.html" class="title">Hyperspace</a>
 	<nav>
 		<ul>
 			<li><a href="/index.html">Home</a></li>
 			<li><a href="/generic.html">Generic</a></li>
 			<li><a href="/elements.html" class="active">Elements</a></li>
-			<li></li>
+			<li>로그인 ID: <div sec:authentication="name"></div></li>
 		</ul>
 	</nav>
 </header>
