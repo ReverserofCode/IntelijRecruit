@@ -72,7 +72,7 @@
                 success: function (response) {
                     for (let message of response) {
                         let boardTitle = message['boardTitle'];
-                        let memberName = "testId";
+                        let memberName = sec:authentication="name";
                         let boardcreatedTime = message['boardcreatedTime'];
                         addHTML(boardTitle, memberName, boardcreatedTime);
                         console.log(message['boardId']);
