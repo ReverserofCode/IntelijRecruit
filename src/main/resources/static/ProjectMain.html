@@ -21,6 +21,19 @@
 			getPost();
 		})
 
+		function handleSearch(event) {
+			event.preventDefault(); // 기본 동작(폼 전송)을 막습니다.
+
+			// 검색 버튼이 클릭되었을 때 실행되는 로직을 구현합니다.
+			// 예시: 검색어를 가져와서 처리하는 코드
+			const searchInput = document.getElementById('search');
+			const searchValue = searchInput.value;
+			console.log('검색어:', searchValue);
+
+			// searchKey() 함수 호출 또는 다른 로직 실행
+			searchKey();
+		}
+
 		function getPost() {
 			let choose = $("input:radio[name='wantedRole']:checked").val();
 			$('#projectTable').empty();
@@ -35,7 +48,7 @@
 						let memberName = "testId";
 						let boardcreatedTime = message['boardcreatedTime'];
 						addHTML(boardId, boardTitle, memberName, boardcreatedTime);
-						console.log(boardId);
+						console.log(message['boardId']);
 					}
 				}
 			});
@@ -49,7 +62,7 @@
 		function makeMessage(boardId, boardTitle, memberName, boardcreatedTime) {
 			return `<tr>
 					<td>1</td>
-					<td><a href='/api/board/getOne/${boardId}'>${boardTitle}</td>
+					<td><a href='/api/boardOne/${boardId}'>${boardTitle}</td>
 					<td>${memberName}</td>
 					<td>${boardcreatedTime.substring(0,10)}</td>
 				</tr>`;
@@ -67,20 +80,22 @@
 			console.log(choose);
 
 			$('#projectTable').empty();
-            $.ajax({
-                type: "PUT",
-                url: `/api/board/${choose}/${keyword}`,
-                data: {},
-                success: function (response) {
-                    for (let message of response) {
-                        let boardTitle = message['boardTitle'];
-                        let memberName = "testId";
-                        let boardcreatedTime = message['boardcreatedTime'];
-                        addHTML(boardTitle, memberName, boardcreatedTime);
-                        console.log(message['boardId']);
-                    }
-                }
-            });
+			$.ajax({
+				type: "PUT",
+				url: `/api/board/${choose}/${keyword}`,
+				data: {},
+				success: function (response) {
+					for (let message of response) {
+						let boardId = message['boardId'];
+						let boardTitle = message['boardTitle'];
+						let memberName = "testId";
+						let boardcreatedTime = message['boardcreatedTime'];
+						addHTML(boardId, boardTitle, memberName, boardcreatedTime);
+						console.log(message['boardId']);
+						console.log(message['boardTitle']);
+					}
+				}
+			});
 		}
 
 	</script>
@@ -135,11 +150,16 @@
 				</section>
 				<!--                <form method="post" action="#" style="right: 0;">-->
 				<form style="right: 0;">
+					<!--					<div class="search" style="float: right;">-->
+					<!--						<span class="search_el" style="margin-top: 2%;">검색</span>-->
+					<!--						<span><input type="text" name="demo-name" id="search" placeholder="검색어를 입력하세요" class="search_el" style="width: 50%;" value=""/></span>-->
+					<!--						&lt;!&ndash;                        <span><input type="submit" value="search" class="primary search_el"/></span>&ndash;&gt;-->
+					<!--						<span><a href="#" class="button primary" onclick="handleSearch()">검색</a></span>-->
+					<!--					</div>-->
 					<div class="search" style="float: right;">
 						<span class="search_el" style="margin-top: 2%;">검색</span>
-						<span><input type="text" name="demo-name" id="search" placeholder="검색어를 입력하세요" class="search_el" style="width: 50%;" value=""/></span>
-						<!--                        <span><input type="submit" value="search" class="primary search_el"/></span>-->
-						<span><a href="#" class="button primary" onclick="searchKey()">검색</a></span>
+						<input type="text" id="search" placeholder="검색어를 입력하세요" class="search_el" style="width: 50%;">
+						<input type="submit" value="Search" class="primary search_el" onclick="handleSearch(event)">
 					</div>
 				</form>
 			</section>

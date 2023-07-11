@@ -35,18 +35,8 @@ public class BoardController {
                 return boardJparepo.findBoardsByOrderByBoardIdDesc();
         }
     }
-//    @GetMapping("/api/board/getOne/{boardId}")
-//    public Board getRead(@PathVariable Long boardId){
-//        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
-//        Board board = new Board();
-//        if(optionalBoard.isPresent()) {
-//            board = optionalBoard.get();
-//        }
-//        return board;
-//    }
-//    //게시판 들어가서 확인할때 호출하는 부분
 
-    @RequestMapping("/api/board/getOne/{boardId}")
+    @RequestMapping("/api/boardOne/{boardId}")
     public ModelAndView getRead(@PathVariable Long boardId, ModelAndView model){
         Optional <Board> optionalBoard = boardJparepo.findById(boardId);
         Board board = new Board();
@@ -54,11 +44,14 @@ public class BoardController {
             board = optionalBoard.get();
         }
         model.setViewName("ProjectPage.html");
-        model.addObject("board", board);
+        model.addObject("title", board.getBoardTitle());
+        model.addObject("content",board.getBoardContent());
+        model.addObject("wantedRole", board.getBoardWantedRole());
+        model.addObject("author", board.getBoardAuthor());
+        model.addObject("createdTime",board.getBoardcreatedTime());
         return model;
     }
-    //게시판 들어가서 확인할때 호출하는 부분
-
+    //상세페이지
 
     //등록 API
     @PostMapping("/api/board")
@@ -67,8 +60,6 @@ public class BoardController {
         boardJparepo.save(board);
         return board;
     }
-
-
 
     @PutMapping("/api/board/{boardWantedRole}/{boardTitle}")
     public List<Board> putBoardTitle(@PathVariable String boardWantedRole, @PathVariable String boardTitle){
