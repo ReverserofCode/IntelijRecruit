@@ -186,5 +186,14 @@
 
 				}
 			});
+	//ON/OFF 관련해서 만들어 보는? 중
+	var loged = false;
+	if(loged){
+		$("#logon").show();
+		// $("#nologon").hide();
+	}else{
+		// $("#logon").hide();
+		$("#nologon").show();
+	}
 
 })(jQuery);
