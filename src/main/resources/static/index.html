@@ -38,9 +38,13 @@
         <div class="inner">
             <h1>Recruit Site</h1>
             <p>환영합니다. 1조의 웹사이트입니다.</p>
-            <ul class="actions">
+            <ul class="actions" id="nologon">
                 <li><a href="/memberinsert.html" class="button">회원가입</a></li>
                 <li><a href="/login" class="button">로그인</a></li>
+            </ul>
+            <ul class="actions" id="logon">
+                <li><a href="" class="button">정보수정</a></li>
+                <li><a methods="post" href="/logout" class="button">로그아웃</a> </li>
             </ul>
         </div>
     </section>
@@ -145,6 +149,5 @@
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
-
 </body>
 </html>
