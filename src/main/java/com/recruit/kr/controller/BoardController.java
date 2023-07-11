@@ -6,6 +6,7 @@ import com.recruit.kr.domain.board.Board_JPAREPO;
 import com.recruit.kr.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,22 @@ public class BoardController {
                 return boardJparepo.findBoardsByOrderByBoardIdDesc();
         }
     }
+
+    @RequestMapping("/api/board/getOne/{boardId}")
+    public ModelAndView getRead(@PathVariable Long boardId, ModelAndView model){
+        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+        Board board = new Board();
+        if(optionalBoard.isPresent()) {
+            board = optionalBoard.get();
+        }
+        model.setViewName("ProjectPage.html");
+        model.addObject("title", board.getBoardTitle());
+        model.addObject("content",board.getBoardContent());
+        model.addObject("wantedRole", board.getBoardWantedRole());
+        model.addObject("author", board.getBoardAuthor());
+        model.addObject("createdTime",board.getBoardcreatedTime());
+        return model;
+    }
     @GetMapping("/api/board/getOne/{boardId}")
     public Board getRead(@PathVariable Long boardId){
         Optional <Board> optionalBoard = boardJparepo.findById(boardId);
@@ -45,6 +62,25 @@ public class BoardController {
     }
     //게시판 들어가서 확인할때 호출하는 부분
 
+//    @RequestMapping("/api/board/getOne/{boardId}")
+//    public ModelAndView getRead(@PathVariable Long boardId, ModelAndView model){
+//        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+//        Board board = new Board();
+//        if(optionalBoard.isPresent()) {
+//            board = optionalBoard.get();
+//        }
+//        model.setViewName("ProjectPage.html");
+//        model.addObject("board", board);
+//        return model;
+//    }
+
+    //게시판 들어가서 확인할때 호출하는 부분
+
+
+    @RequestMapping("/ProjectPage.html/{boardId}")
+    public String getOne() {
+        return "";
+    }
 
     //등록 API
     @PostMapping("/api/board")
@@ -53,8 +89,6 @@ public class BoardController {
         boardJparepo.save(board);
         return board;
     }
-
-
 
     @PutMapping("/api/board/{boardWantedRole}/{boardTitle}")
     public List<Board> putBoardTitle(@PathVariable String boardWantedRole, @PathVariable String boardTitle){
@@ -86,6 +120,9 @@ public class BoardController {
     public void deleteBoard(@PathVariable Long boardId){
         boardJparepo.deleteById(boardId);
     }
+
+
+
 
     //수정 API
     @PatchMapping("/api/board/{boardId}")
