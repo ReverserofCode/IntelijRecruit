@@ -9,14 +9,21 @@
 
 <script>
   function boarddelect(boardId) {
-    $.ajax({
-      type:"DELETE",
-      url:`/api/board/${boardId}`,
-      success: function (response){
-        alert("게시물 삭제 완료.");
-        window.location.reload();
-      }
-    })
+
+    let boardAuthor = $('#boardAuthor').val();
+    let loginUser = $('#loginUser').text();
+    if(loginUser === boardAuthor){
+      $.ajax({
+        type:"DELETE",
+        url:`/api/board/${boardId}`,
+        success: function (response){
+          alert("게시물 삭제 완료.");
+          window.location.reload();
+        }
+      });
+    }else{
+      alert("당신의 게시물이 아닙니다.\n 권한이 없습니다.");
+    }
   }
 
   function boardupdate(boardId){
@@ -24,8 +31,11 @@
     let boardContent = $('#updateboardContent').val();
     let wantedRole = $('#boardWantedRole').val();
     let boardAuthor = $('#boardAuthor').val();
+    let loginUser = $('#loginUser').text();
+
     let data = {'boardTitle': boardTitle,'boardWantedRole': wantedRole, 'boardContent': boardContent, 'boardAuthor':boardAuthor};
 
+    if(loginUser === boardAuthor){
     $.ajax({
       type: "PATCH",
       url: `/api/board/${boardId}`,
@@ -36,6 +46,9 @@
         window.location.reload();
       }
     });
+    }else{
+      alert("당신이 쓴 게시물이 아닙니다\n권한이 없습니다.");
+    }
   }
 
 </script>
@@ -56,6 +69,7 @@
       <li><a href="/index.html">Home</a></li>
       <li><a href="/generic.html" class="active">Generic</a></li>
       <li><a href="/elements.html">Elements</a></li>
+      <li><span id="loginUser" th:text="${#authentication.name}"></span>님</li>
     </ul>
   </nav>
 </header>
