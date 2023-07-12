@@ -12,23 +12,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @Log4j2
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
+public class SecurityConfig {
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         log.info("------------------------------------filterChain-----------------------------");
-        http.authorizeRequests((auth)->{
-           auth.antMatchers("/all").permitAll();
-           auth.antMatchers("/member").hasRole("USER");
-           auth.antMatchers("/admin").hasRole("ADMIN");
-           auth.antMatchers("/login.html").permitAll();
-           auth.antMatchers("/assets/**").permitAll();
-           auth.antMatchers("/images/**").permitAll();
+        http.authorizeRequests((auth) -> {
+//           모두 공개
+            auth.antMatchers("/all").permitAll();
+            auth.antMatchers("/login.html").permitAll();
+            auth.antMatchers("/assets/**").permitAll();
+            auth.antMatchers("/images/**").permitAll();
+//           회원 공개
+            auth.antMatchers("/member").hasRole("USER");
+            auth.antMatchers("/ProjectInsert").hasRole("USER");
+
+//           관리자 공개
+            auth.antMatchers("/admin").hasRole("ADMIN");
         });
         http.formLogin()
                 .loginPage("/login")

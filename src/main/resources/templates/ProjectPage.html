@@ -8,113 +8,129 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <script>
-  function boarddelect(boardId) {
+    function boarddelect(boardId) {
 
-    let boardAuthor = $('#boardAuthor').val();
-    let loginUser = $('#loginUser').text();
+        let boardAuthor = $('#boardAuthor').val();
+        let loginUser = $('#loginUser').text();
 
-    if(loginUser === boardAuthor){
-      $.ajax({
-        type:"DELETE",
-        url:`/api/board/${boardId}`,
-        success: function (response){
-          alert("게시물 삭제 완료.");
-          window.location.reload();
-        }
-      });
-    }else{
-      alert("당신의 게시물이 아닙니다.\n 권한이 없습니다.");
-    }
-  }
 
-  function boardupdate(boardId){
-    let boardTitle = $('#updateboardTitle').val();
-    let boardContent = $('#updateboardContent').val();
-    let wantedRole = $('#boardWantedRole').val();
-    let boardAuthor = $('#boardAuthor').val();
-    let loginUser = $('#loginUser').text();
-
-    let data = {'boardTitle': boardTitle,'boardWantedRole': wantedRole, 'boardContent': boardContent, 'boardAuthor':boardAuthor};
-
-    if(loginUser === boardAuthor){
-    $.ajax({
-      type: "PATCH",
-      url: `/api/board/${boardId}`,
-      contentType:"application/json",
-      data: JSON.stringify(data),
-      success: function (response){
-        alert('수정 완료.');
-        window.location.reload();
+      if (loginUser === 'anonymousUser') {
+        alert("회원가입 하지 않은 이용자는 권한이 없습니다.");
       }
-    });
-    }else{
-      alert("당신이 쓴 게시물이 아닙니다\n권한이 없습니다.");
+       else if (loginUser === boardAuthor) {
+            $.ajax({
+                type: "DELETE",
+                url: `/api/board/${boardId}`,
+                success: function (response) {
+                    alert("게시물 삭제 완료.");
+                    window.location.reload();
+                }
+            });
+        } else {
+            alert("당신의 게시물이 아닙니다.\n 권한이 없습니다.");
+        }
     }
-  }
+
+    function boardupdate(boardId) {
+        let boardTitle = $('#updateboardTitle').val();
+        let boardContent = $('#updateboardContent').val();
+        let wantedRole = $('#boardWantedRole').val();
+        let boardAuthor = $('#boardAuthor').val();
+        let loginUser = $('#loginUser').text();
+
+        let data = {
+            'boardTitle': boardTitle,
+            'boardWantedRole': wantedRole,
+            'boardContent': boardContent,
+            'boardAuthor': boardAuthor
+        };
+
+        if (loginUser === 'anonymousUser') {
+            alert("회원가입 하지 않은 이용자는 권한이 없습니다.");
+
+        } else if (loginUser === boardAuthor) {
+            $.ajax({
+                type: "PATCH",
+                url: `/api/board/${boardId}`,
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert('수정 완료.');
+                    window.location.reload();
+                }
+            });
+        } else {
+            alert("당신이 쓴 게시물이 아닙니다\n권한이 없습니다.");
+        }
+    }
 
 </script>
 <head>
-  <title>글 상세페이지</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    <title>글 상세페이지</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css"/>
+    </noscript>
 </head>
 <body class="is-preload">
 
 <!-- Header -->
 <header id="header">
-  <a href="/index.html" class="title">Hyperspace</a>
-  <nav>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/generic.html" class="active">Generic</a></li>
-      <li><a href="/elements.html">Elements</a></li>
-      <li><span id="loginUser" th:text="${#authentication.name}"></span>님</li>
-    </ul>
-  </nav>
+    <a href="/index.html" class="title">Hyperspace</a>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/generic.html" class="active">Generic</a></li>
+            <li><a href="/elements.html">Elements</a></li>
+            <li><span id="loginUser" th:text="${#authentication.name}"></span>님</li>
+        </ul>
+    </nav>
 </header>
 
 <!-- Wrapper -->
 <div id="wrapper">
 
-  <!-- Main -->
-  <section id="main" class="wrapper">
+    <!-- Main -->
+    <section id="main" class="wrapper">
 
-    <div class="inner">
-      <h1 class="major">커뮤니티 글</h1>
-      <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
+        <div class="inner">
+            <h1 class="major">커뮤니티 글</h1>
+            <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
 
-        <label for="updateboardTitle">제목</label>
-        <input type="text" name="updateboardTitle" id="updateboardTitle" th:value="${title}"/> <br>
-        <label for="boardWantedRole">모집 역할</label>
-        <div class="boardWantedRole">
-          <p>[[${wantedRole}]]</p>
-          <input type="hidden" name="boardWantedRole" id="boardWantedRole" th:value="${wantedRole}"/>
-          <input type="hidden" name="boardAuthor" id="boardAuthor" th:value = "${author}"/>
+                <label for="updateboardTitle">제목</label>
+                <input type="text" name="updateboardTitle" id="updateboardTitle" th:value="${title}"/> <br>
+                <label for="boardWantedRole">모집 역할</label>
+                <div class="boardWantedRole">
+                    <p>[[${wantedRole}]]</p>
+                    <input type="hidden" name="boardWantedRole" id="boardWantedRole" th:value="${wantedRole}"/>
+                    <input type="hidden" name="boardAuthor" id="boardAuthor" th:value="${author}"/>
+                </div>
+
+                <label for="updateboardContent">내용</label>
+                <textarea rows="12" cols="30" id="updateboardContent"
+                          name="updateboardContent">[[${content}]]</textarea>
+
+            </div>
+
+            <ul class="actions" style="margin-left: 13%;">
+                <li><input type="button" th:onclick="'boardupdate('+${boardId}+')'" value="수정"/></li>
+                <li><input type="button" th:onclick="'boarddelect('+${boardId}+')'" value="삭제"/></li>
+            </ul>
         </div>
-
-        <label for="updateboardContent">내용</label>
-        <textarea rows="12" cols="30" id="updateboardContent" name="updateboardContent" >[[${content}]]</textarea>
-
-      </div>
-
-      <ul class="actions" style="margin-left: 13%;">
-        <li><input type="button" th:onclick="'boardupdate('+${boardId}+')'" value="수정"/></li>
-        <li><input type="button" th:onclick="'boarddelect('+${boardId}+')'" value="삭제"/></li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
 </div>
 
 <!-- Footer -->
 <footer id="footer" class="wrapper alt">
-  <div class="inner">
-    <ul class="menu">
-      <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-    </ul>
-  </div>
+    <div class="inner">
+        <ul class="menu">
+            <li>&copy; Untitled. All rights reserved.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
 </footer>
 
 <!-- Scripts -->
