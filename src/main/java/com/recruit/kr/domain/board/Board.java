@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -49,7 +48,5 @@ public class Board extends TimeStamp {
         this.boardContent = boardDTO.getBoardContent();
         this.boardAuthor = boardDTO.getBoardAuthor();
         this.boardWantedRole = boardDTO.getBoardWantedRole();
-
-
     }
 }
