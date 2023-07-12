@@ -76,7 +76,7 @@
         <div class="boardWantedRole">
           <p>[[${wantedRole}]]</p>
           <input type="hidden" name="boardWantedRole" id="boardWantedRole" th:value="${wantedRole}"/>
-          <input type="hidden" name="boardAuthor" id="boardAuthor" value="우리"/>
+          <input type="hidden" name="boardAuthor" id="boardAuthor" th:value = "${author}"/>
         </div>
 
         <label for="updateboardContent">내용</label>
