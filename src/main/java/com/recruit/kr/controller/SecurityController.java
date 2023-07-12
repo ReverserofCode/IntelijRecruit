@@ -30,4 +30,6 @@ public class SecurityController {
     public void getProjectInsert(){
         log.info("ProjectInsert");
     }
+
+
 }

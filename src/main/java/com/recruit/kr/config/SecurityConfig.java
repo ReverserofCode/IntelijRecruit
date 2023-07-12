@@ -35,7 +35,12 @@ public class SecurityConfig{
                 .loginProcessingUrl("/loginProcess")
                 .defaultSuccessUrl("/")
         ;
-        http.logout();
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/index.html")
+                .deleteCookies("JSESSIONID", "remember-me")
+        //위에 deleteCookies는 주석 처리해도 돌아가지만 기왕이면 있는게 나을거 같아서 남겨 놓음
+        ;
         http.csrf().disable();
         return http.build();
     }

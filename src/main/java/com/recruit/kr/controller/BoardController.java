@@ -52,6 +52,36 @@ public class BoardController {
         return model;
     }
     //상세페이지
+    @GetMapping("/api/board/getOne/{boardId}")
+    public Board getRead(@PathVariable Long boardId){
+        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+        Board board = new Board();
+        if(optionalBoard.isPresent()) {
+            board = optionalBoard.get();
+        }
+        return board;
+    }
+    //게시판 들어가서 확인할때 호출하는 부분
+
+//    @RequestMapping("/api/board/getOne/{boardId}")
+//    public ModelAndView getRead(@PathVariable Long boardId, ModelAndView model){
+//        Optional <Board> optionalBoard = boardJparepo.findById(boardId);
+//        Board board = new Board();
+//        if(optionalBoard.isPresent()) {
+//            board = optionalBoard.get();
+//        }
+//        model.setViewName("ProjectPage.html");
+//        model.addObject("board", board);
+//        return model;
+//    }
+
+    //게시판 들어가서 확인할때 호출하는 부분
+
+
+    @RequestMapping("/ProjectPage.html/{boardId}")
+    public String getOne() {
+        return "";
+    }
 
     //등록 API
     @PostMapping("/api/board")
