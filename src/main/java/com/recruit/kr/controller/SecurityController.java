@@ -31,5 +31,4 @@ public class SecurityController {
         log.info("ProjectInsert");
     }
 
-
 }
