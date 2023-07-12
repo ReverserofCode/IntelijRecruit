@@ -31,5 +31,8 @@ public class SecurityController {
         log.info("ProjectInsert");
     }
 
+    @GetMapping("/index")
+    public void getIndex(){log.info("Index");}
+
 
 }

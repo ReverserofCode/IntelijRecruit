@@ -3934,7 +3934,7 @@ input, select, textarea {
 }
 
 
-#login, #nologin{
+#login, #nologin, #login2, #nologin2{
 	display: none;
 
 }
