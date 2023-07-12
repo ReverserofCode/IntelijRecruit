@@ -12,6 +12,7 @@
 
     let boardAuthor = $('#boardAuthor').val();
     let loginUser = $('#loginUser').text();
+
     if(loginUser === boardAuthor){
       $.ajax({
         type:"DELETE",
