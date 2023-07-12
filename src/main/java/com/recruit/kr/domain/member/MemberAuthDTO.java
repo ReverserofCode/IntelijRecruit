@@ -26,7 +26,6 @@ public class MemberAuthDTO extends User {
     private String memberCourseIsu;
     private String memberWebUrl;
 
-
     public MemberAuthDTO(String username,
                          String password,
                          String memberAge,
@@ -51,6 +50,5 @@ public class MemberAuthDTO extends User {
         this.memberWebUrl = memberWebUrl;
     }
 }
-
 
 

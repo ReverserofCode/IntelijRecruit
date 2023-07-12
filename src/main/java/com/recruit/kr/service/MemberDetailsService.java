@@ -40,9 +40,9 @@ public class MemberDetailsService implements UserDetailsService {
         MemberAuthDTO memberAuth = new MemberAuthDTO(
                 member.getMemberId(),
                 member.getMemberPw(),
+                member.getMemberAge(),
                 member.getMemberName(),
                 member.getMemberGender(),
-                member.getMemberAge(),
                 member.getMemberPhoneNumber(),
                 member.getMemberEmail(),
                 member.getMemberTechStack(),
@@ -50,7 +50,6 @@ public class MemberDetailsService implements UserDetailsService {
                 member.getMemberWebUrl(),
                 member.getRoleSet().stream().map(role->new SimpleGrantedAuthority("ROLE_"+role.name())).collect(Collectors.toSet())
         );
-        memberAuth.setMemberName(member.getMemberName());
         log.info(memberAuth.toString());
         return memberAuth;
     }

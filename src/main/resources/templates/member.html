@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:sec="http://www.w3.org/1999/xhtml"
+
+
+>
+
 <h1>For Member ....................</h1>
 
 <div sec:authorize="hasRole('USER')">Has USER ROLE</div>
@@ -23,4 +27,9 @@ Member Phone Number
 <div sec:authentication="principal.memberPhoneNumber"></div>
 <div sec:authentication="principal.memberAge"></div>
 <div sec:authentication="principal.memberTechStack"></div>
+
+
+<span th:text="${#authentication.name}"></span>님
+<span th:text="${#authentication.principal.memberAge}"/>
+<span th:text="${#authentication.principal.memberGender}"/>
 </html>
