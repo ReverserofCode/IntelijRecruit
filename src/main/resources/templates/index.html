@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+
+<head>
+  <title>Recruit Site</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+  <link rel="stylesheet" href="assets/css/main.css"/>
+  <noscript>
+    <link rel="stylesheet" href="assets/css/noscript.css"/>
+  </noscript>
+</head>
+<body class="is-preload">
+
+<input type="hidden" id="test" th:value="${#authentication.name}"/>
+<!-- Sidebar -->
+<section id="sidebar">
+  <div class="inner">
+    <nav>
+      <ul>
+        <li><a href="#intro">메인</a></li>
+        <li><a href="#one">게시판</a></li>
+
+        <li><a href="#three">Get in touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+  <!-- Intro -->
+  <section id="intro" class="wrapper style1 fullscreen fade-up">
+    <div class="inner">
+      <h1>Recruit Site</h1>
+      <p id="nologin2">환영합니다. 2조의 웹사이트입니다.</p>
+      <p id="login2"><span th:text="${#authentication.name}"></span>님 환영합니다.</p>
+      <ul class="actions" id="login">
+
+        <li><a href="#" class="button">마이페이지</a></li>
+        <li><a href="/logout" class="button">로그아웃</a></li>
+      </ul>
+      <ul class="actions" id="nologin">
+        <li><a href="/memberinsert.html" class="button">회원가입</a></li>
+        <li><a href="/login" class="button">로그인</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- One -->
+  <section id="one" class="wrapper style2 spotlights index_section">
+    <section>
+      <a href="#" class="image"><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FPVtqb%2FbtqBcMrRg6j%2FWcMtzNm5KbZwtqrKuWEDUk%2Fimg.jpg" alt="" data-position="top center"/></a>
+      <div class="content">
+        <div class="inner">
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <h1 style="text-align: center">프로젝트 게시판</h1>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p style="text-align: center">프론트엔드, 백엔드 여러분들의 다양한 프로젝트를<br> 감상,공유하는 게시판 입니다.</p>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <ul class="actions">
+            <li style="margin-left: auto; margin-right: auto"><a href="/ProjectMain" class="button">프로젝트 게시판 상세페이지</a></li>
+          </ul>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+
+  <!-- Three -->
+  <section id="three" class="wrapper style1 fade-up">
+    <div class="inner">
+      <h2>건의 사항</h2>
+      <p>우리 사이트에 대한 피드백이 있으면<br> 아래의 채널로 연락주시기 바랍니다.</p>
+      <div class="split style1">
+        <section class="contact-section">
+          <form>
+            <ul class="contact">
+              <li>
+                <h2 style="font-size: xx-large; margin-bottom: 1em">대표: 정민호</h2>
+                <h3>주소</h3>
+                <span>서울특별시 노원구 상계로1길 34 5 6층<br/>
+                                 (02-933-5890) <br/>
+                              </span>
+              </li>
+              <li>
+                <h3>이메일</h3>
+                <a href="https://www.google.com/intl/ko/gmail/about/">patteon94@gmail.com</a>
+              </li>
+              <li>
+                <h3>대표번호</h3>
+                <span>010-7701-4182</span>
+              </li>
+              <li>
+                <h3>Social</h3>
+                <ul class="icons">
+                  <li><a href="https://github.com/ReverserofCode?tab=repositories"
+                         class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                  <li><a href="https://instagram.com/dasol_dosol?igshid=MzNlNGNkZWQ4Mg=="
+                         class="icon brands fa-instagram"><span class="label">Instagram</span></a>
+                  </li>
+                  <li><a href="https://nowon.koreaisacademy.com/"
+                         class="icon brands fa-linkedin-in"><span class="label">코리아it아카데미</span></a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </form>
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+  <div class="inner">
+    <ul class="menu">
+      <li>개발진: 김다솔, 김동민, 김민규, 이동락, 정민호, 정민영, 정우리</li>
+      <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+    let logck = $('#test').val()
+    if(logck === 'anonymousUser'){
+      $('#nologin2').show()
+      $('#nologin').show()
+    }else{
+      $('#login2').show()
+      $('#login').show()
+    }
+
+</script>
+</body>
+</html>
