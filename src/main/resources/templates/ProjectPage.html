@@ -15,7 +15,7 @@
 
 
       if (loginUser === 'anonymousUser') {
-        alert("회원가입 하지 않은 이용자는 권한이 없습니다.");
+        alert("권한이 없습니다.");
       }
        else if (loginUser === boardAuthor) {
             $.ajax({
@@ -23,11 +23,11 @@
                 url: `/api/board/${boardId}`,
                 success: function (response) {
                     alert("게시물 삭제 완료.");
-                    window.location.reload();
+                    window.location.href="/ProjectMain";
                 }
             });
         } else {
-            alert("당신의 게시물이 아닙니다.\n 권한이 없습니다.");
+            alert("권한이 없습니다.");
         }
     }
 
@@ -46,7 +46,7 @@
         };
 
         if (loginUser === 'anonymousUser') {
-            alert("회원가입 하지 않은 이용자는 권한이 없습니다.");
+            alert("권한이 없습니다.");
 
         } else if (loginUser === boardAuthor) {
             $.ajax({
@@ -56,11 +56,11 @@
                 data: JSON.stringify(data),
                 success: function (response) {
                     alert('수정 완료.');
-                    window.location.reload();
+                    window.location.href="/ProjectMain";
                 }
             });
         } else {
-            alert("당신이 쓴 게시물이 아닙니다\n권한이 없습니다.");
+            alert("권한이 없습니다.");
         }
     }
 
