@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <title>마이 페이지</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<header id="header">
+    <a href="/index.html" class="title">Hyperspace</a>
+    <nav>
+        <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/generic.html" class="active">Generic</a></li>
+            <li><a href="/elements.html">Elements</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Main -->
+    <section id="main" class="wrapper">
+
+        <div class="inner">
+            <h1 class="major">회원 수정</h1>
+            <div class="field half" style="width: 70%; margin: 0 auto 0 auto;">
+
+                <label for="memberId">* 아이디</label>
+                <label style="font-weight: lighter; font-size: small;" >영문 숫자 조합의 4~12자이며 첫글자는 영문자로 입력하시오.</label>
+                <input type="text" name="memid" id="memberId" required="required" th:value="${#authentication.name}" /> <br>
+
+<!--                <label for="memberPw">* 비밀번호</label>-->
+<!--                <label style="font-weight: lighter; font-size: small;">영문자, 숫자, 특수문자로 총 8자~15자로 입력하시오.</label>-->
+<!--                <input type="password" name="memberPw" id="memberPw" required="required"th:value="${#authentication.pw}"/> <br>-->
+
+<!--                <label for="memberPwch">* 비밀번호 확인</label>-->
+<!--                <input type="password" id="memberPwch" required="required"> <br>-->
+
+                <label for="memberName">* 이름</label>
+                <label style="font-weight: lighter; font-size: small;">한글로 2자 이상 입력하시오.</label>
+                <input type="text" name="memberName" id="memberName" required="required" th:value="${#authentication.principal.memberName}"/> <br>
+
+                <label for="memberAge">나이</label>
+                <input type="text" name="memberAge" id="memberAge" th:value="${#authentication.principal.memberAge}"/> <br>
+
+                <label for="memberGender">성별</label>
+                <SELECT name="memberGender" id="memberGender">
+                    <option value="#" selected th:text="${#authentication.principal.memberGender}">성별 선택</option>
+                    <option value="male">남성</option>
+                    <option value="female">여성</option>
+                </SELECT> <br>
+
+                <label for="memberPhoneNumber">* 전화번호(형식에 맞춰서 작성하십시오)</label>
+                <input type="text" placeholder="000-0000-0000" id="memberPhoneNumber" pattern="\d{3}-\d{4}-\d{4}" th:value="${#authentication.principal.memberPhoneNumber}"
+                       required="required"> <br>
+
+                <label for="memberEmail">* 이메일(형식에 맞춰서 작성하십시오)</label>
+                <input type="email" name="memberEmail" id="memberEmail" placeholder="aaa@naver.com" required="required" th:value="${#authentication.principal.memberEmail}" >
+                <br>
+
+                <label for="memberTechStack">기술(최대 5개 선택해주세요)</label>
+                헌재 기술 스택: <a sec:authentication="principal.memberTechStack"></a>
+
+                <br> <div class="techStack" id="memberTechStack" > <br>
+                    <input type="checkbox" id="stack_java" value="java">
+                    <label for="stack_java">JAVA</label>
+                    <input type="checkbox" id="stack_SpringBoot" value="SpringBoot">
+                    <label for="stack_SpringBoot">SpringBoot</label>
+                    <input type="checkbox" id="stack_C" value="C">
+                    <label for="stack_C">C</label>
+                    <input type="checkbox" id="stack_Spring" value="Spring">
+                    <label for="stack_Spring">Spring</label>
+                    <input type="checkbox" id="stack_CSS" value="CSS">
+                    <label for="stack_CSS">CSS</label>
+                    <input type="checkbox" id="stack_HTML" value="HTML">
+                    <label for="stack_HTML">HTML</label>
+                    <input type="checkbox" id="stack_JavaScript" value="JavaScript">
+                    <label for="stack_JavaScript">JavaScript</label>
+                </div>
+
+                <label for="memberCourseIsu">경력</label>
+                <input type="text" name="memberCourseIsu" id="memberCourseIsu"
+                       th:value="${#authentication.principal.memberCourseIsu}"
+                       placeholder="근무 했던, 재직중인 회사명을 작성하세요."/>
+                <br>
+
+                <label for="memberWebUrl">개인페이지</label>
+                <label style="font-weight: lighter; font-size: small;">개인 페이지가 있는 경우 형식에 맞춰 작성해주세요.</label>
+                <input type="text" name="webUrl" id="memberWebUrl"
+                       th:value="${#authentication.principal.memberWebUrl}"
+                       placeholder="http://~"/> <br>
+            </div>
+            <ul class="actions" style="margin-left: 13%;">
+                <li><a href="#" class="button" onclick="inPost()">회원 수정</a></li>
+                <li><a href="#" class="button" onclick="window.location.reload()">취소</a></li>
+                <a>회원 탈퇴</a>
+            </ul>
+        </div>
+
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="wrapper style1-alt">
+    <div class="inner">
+        <ul class="menu">
+            <li>개발진: 김다솔, 김동민, 김민규, 이동락, 정민호, 정민영, 정우리</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/browser.min.js"></script>
+<script src="/assets/js/breakpoints.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+</body>
+</html>
