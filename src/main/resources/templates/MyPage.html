@@ -5,16 +5,31 @@
 
 <script>
 
-    function delectmember(){
+    function deletemember(){
+        let memberId = $('#memberId').val();
+        console.log("delete 함수 작동 확인")
         $.ajax({
-            type: "DELECT",
-            url: `api/member/${memberId}`,
+            type: "DELETE",
+            url: `/api/member/${memberId}`,
             success: function (response){
                 alert("회원탈퇴 완료.");
-                window.location.reload();
+                // window.location.href='index';
             }
         })
     }
+
+
+
+    // function deletemember(){
+    //     $.ajax({
+    //         type: "DELETE",
+    //         url: `api/member/${memberId}`,
+    //         success: function (response){
+    //             alert("회원탈퇴 완료.");
+    //             window.location.reload();
+    //         }
+    //     });
+    // }
 
     function updatemember(){
 
@@ -149,7 +164,7 @@
             </div>
             <ul class="actions" style="margin-left: 13%;">
                 <li><input type="button" th:onclick="'updatemember('+${memberId}+')'" value="회원 수정"/></li>
-                <li><input type="button" th:onclick="'delectmember('+${memberId}+')'" value="회원 탈퇴"/></li>
+                <li><input type="button" th:onclick="'deletemember('+${memberId}+')'" value="회원 탈퇴"/></li>
                 <li><a href="#" class="button" onclick="window.location.reload()">취소</a></li>
             </ul>
         </div>
