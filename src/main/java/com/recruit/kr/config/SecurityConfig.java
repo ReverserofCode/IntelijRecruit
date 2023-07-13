@@ -15,7 +15,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @Log4j2
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  {
+public class SecurityConfig {
 
 
     @Bean
