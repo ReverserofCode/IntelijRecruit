@@ -33,9 +33,11 @@ public class SecurityConfig {
             auth.antMatchers("/login.html").permitAll();
             auth.antMatchers("/assets/**").permitAll();
             auth.antMatchers("/images/**").permitAll();
+
 //           회원 공개
             auth.antMatchers("/member").hasRole("USER");
             auth.antMatchers("/ProjectInsert").hasRole("USER");
+            auth.antMatchers("/MyPage").hasRole("USER");
 
 //           관리자 공개
             auth.antMatchers("/admin").hasRole("ADMIN");

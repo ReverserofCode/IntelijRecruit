@@ -13,7 +13,7 @@
             url: `/api/member/${memberId}`,
             success: function (response){
                 alert("회원탈퇴 완료.");
-                // window.location.href='index';
+                window.location.href="/logout";
             }
         })
     }
@@ -60,10 +60,9 @@
             data: JSON.stringify(data),
             success: function (response){
                 alert("회원 수정 완료");
-                window.location.reload();
+                window.location.href="/logout";
             }
         });
-
     }
 
 </script>
@@ -117,7 +116,7 @@
 
                 <label for="memberGender">성별</label>
                 <SELECT name="memberGender" id="memberGender">
-                    <option value="#" selected th:text="${#authentication.principal.memberGender}">성별 선택</option>
+                    <option  value="#" selected hidden th:text="${#authentication.principal.memberGender}">성별 선택</option>
                     <option value="male">남성</option>
                     <option value="female">여성</option>
                 </SELECT> <br>
