@@ -28,8 +28,10 @@ public class SecurityController {
         log.info("ProjectInsert");
     }
 
+    @GetMapping("/MyPage")
+    public void getMemberPage(){ log.info("GoMyPage");}
+
     @GetMapping("/index")
     public void getIndex(){log.info("Index");}
-
 
 }
