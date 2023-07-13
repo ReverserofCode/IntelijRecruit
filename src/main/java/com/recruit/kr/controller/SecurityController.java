@@ -31,5 +31,6 @@ public class SecurityController {
         log.info("ProjectInsert");
     }
 
-
+    @GetMapping("/MyPage")
+    public void getMemberPage(){ log.info("GoMyPage");}
 }

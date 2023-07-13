@@ -2,6 +2,57 @@
 <html
         xmlns:th="http://www.thymeleaf.org"
 >
+
+<script>
+
+    function delectmember(){
+        $.ajax({
+            type: "DELECT",
+            url: `api/member/${memberId}`,
+            success: function (response){
+                alert("회원탈퇴 완료.");
+                window.location.reload();
+            }
+        })
+    }
+
+    function updatemember(){
+
+            let techStackList = [];
+            $('input[type="checkbox"]:checked').each(function () {
+                techStackList.push(this.value);
+            });
+
+        let memberId = $('#memberId').val();
+        let memberName = $('#memberName').val();
+        let memberPw = $('#memberPw').val();
+        let memberAge  = $('#memberAge').val();
+        let memberGender = $('#memberGender').val();
+        let memberPhoneNumber = $('#memberPhoneNumber').val();
+        let memberEmail = $('#memberEmail').val();
+        let memberTechStack = techStackList.toString();
+        let memberCourseIsu = $('#memberCourseIsu').val();
+        let memberWebUrl = $('#memberWebUrl').val();
+        let data = {'memberId' : memberId, 'memberPw' : memberPw, 'memberName' : memberName, 'memberAge' : memberAge, 'memberGender': memberGender,
+            'memberPhoneNumber' : memberPhoneNumber, 'memberEmail': memberEmail,
+            'memberTechStack': memberTechStack, 'memberCourseIsu': memberCourseIsu, 'memberWebUrl': memberWebUrl
+        };
+
+        $.ajax({
+            type: "PATCH",
+            url: `api/member/${memberId}`,
+            contentType:"application/json",
+            data: JSON.stringify(data),
+            success: function (response){
+                alert("회원 수정 완료");
+                window.location.reload();
+            }
+        });
+
+    }
+
+</script>
+
 <head>
     <title>마이 페이지</title>
     <meta charset="utf-8" />
@@ -35,14 +86,12 @@
 
                 <label for="memberId">* 아이디</label>
                 <label style="font-weight: lighter; font-size: small;" >영문 숫자 조합의 4~12자이며 첫글자는 영문자로 입력하시오.</label>
-                <input type="text" name="memid" id="memberId" required="required" th:value="${#authentication.name}" /> <br>
+                <input type="text" name="memberId" id="memberId" required="required" th:value="${#authentication.name}" readonly/> <br>
 
-<!--                <label for="memberPw">* 비밀번호</label>-->
+<!--                <label for="memberPw" >* 비밀번호</label>-->
 <!--                <label style="font-weight: lighter; font-size: small;">영문자, 숫자, 특수문자로 총 8자~15자로 입력하시오.</label>-->
-<!--                <input type="password" name="memberPw" id="memberPw" required="required"th:value="${#authentication.pw}"/> <br>-->
+                <input type="password" id="memberPw" required="required" th:value="${#authentication.principal.memberPw}" style="display: none"/> <br>
 
-<!--                <label for="memberPwch">* 비밀번호 확인</label>-->
-<!--                <input type="password" id="memberPwch" required="required"> <br>-->
 
                 <label for="memberName">* 이름</label>
                 <label style="font-weight: lighter; font-size: small;">한글로 2자 이상 입력하시오.</label>
@@ -59,7 +108,7 @@
                 </SELECT> <br>
 
                 <label for="memberPhoneNumber">* 전화번호(형식에 맞춰서 작성하십시오)</label>
-                <input type="text" placeholder="000-0000-0000" id="memberPhoneNumber" pattern="\d{3}-\d{4}-\d{4}" th:value="${#authentication.principal.memberPhoneNumber}"
+                <input type="text" placeholder="000-0000-0000" name="memberPhoneNumber" id="memberPhoneNumber" pattern="\d{3}-\d{4}-\d{4}" th:value="${#authentication.principal.memberPhoneNumber}"
                        required="required"> <br>
 
                 <label for="memberEmail">* 이메일(형식에 맞춰서 작성하십시오)</label>
@@ -99,9 +148,9 @@
                        placeholder="http://~"/> <br>
             </div>
             <ul class="actions" style="margin-left: 13%;">
-                <li><a href="#" class="button" onclick="inPost()">회원 수정</a></li>
+                <li><input type="button" th:onclick="'updatemember('+${memberId}+')'" value="회원 수정"/></li>
+                <li><input type="button" th:onclick="'delectmember('+${memberId}+')'" value="회원 탈퇴"/></li>
                 <li><a href="#" class="button" onclick="window.location.reload()">취소</a></li>
-                <a>회원 탈퇴</a>
             </ul>
         </div>
 
